@@ -1,13 +1,13 @@
-import java.util.List;
+import java.util.LinkedList;
 
 public class Usuario {
     private String nombre;
     private int idUsuario;
     private String email;
-    private List<Proyecto> proyectos;
-    private List<Reseña> reseñas;
+    private LinkedList<Proyecto> proyectos;
+    private LinkedList<Reseña> reseñas;
 
-    public Usuario(String nombre, int idUsuario, String email, List<Proyecto> proyectos, List<Reseña> reseñas) {
+    public Usuario(String nombre, int idUsuario, String email, LinkedList<Proyecto> proyectos, LinkedList<Reseña> reseñas) {
         this.nombre = nombre;
         this.idUsuario = idUsuario;
         this.email = email;
@@ -15,7 +15,7 @@ public class Usuario {
         this.reseñas = reseñas;
     }
     
-    // Por añadir con la base de datos: Logica para ingresar progreso, consultar planta
+    // Para añadir con la base de datos: Logica para ingresar progreso, para consultar planta.
 
     public void ingresarProgreso(Progreso progreso) {
         
@@ -26,11 +26,10 @@ public class Usuario {
     }
 
     public void dejarReseña(Reseña reseña) {
-    	
-        // Por añadir con la base de datos: reseñas.add(reseña);
+    	// Para añadir con la base de datos: reseñas.add(reseña);
     }
 
-    
+   
     public String getNombre() {
         return nombre;
     }
@@ -55,19 +54,19 @@ public class Usuario {
         this.email = email;
     }
 
-    public List<Proyecto> getProyectos() {
+    public LinkedList<Proyecto> getProyectos() {
         return proyectos;
     }
 
-    public void setProyectos(List<Proyecto> proyectos) {
+    public void setProyectos(LinkedList<Proyecto> proyectos) {
         this.proyectos = proyectos;
     }
 
-    public List<Reseña> getReseñas() {
+    public LinkedList<Reseña> getReseñas() {
         return reseñas;
     }
 
-    public void setReseñas(List<Reseña> reseñas) {
+    public void setReseñas(LinkedList<Reseña> reseñas) {
         this.reseñas = reseñas;
     }
 }
