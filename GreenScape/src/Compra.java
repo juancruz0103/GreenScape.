@@ -1,14 +1,14 @@
+import java.util.LinkedList;
 import java.util.Date;
-import java.util.List;
 
 public class Compra {
     private int idCompra;
     private int idUsuario;
-    private List<Producto> productos;
+    private LinkedList<Producto> productos;
     private Date fecha;
     private double total;
 
-    public Compra(int idCompra, int idUsuario, List<Producto> productos, Date fecha, double total) {
+    public Compra(int idCompra, int idUsuario, LinkedList<Producto> productos, Date fecha, double total) {
         this.idCompra = idCompra;
         this.idUsuario = idUsuario;
         this.productos = productos;
@@ -16,17 +16,17 @@ public class Compra {
         this.total = total;
     }
     
-   // Para añadir con la base de datos: Logica para realizar compras, consultar compras.
+    // Para añadir con la base de datos: Lógica para realizar compra, para consultar compra.
 
     public void realizarCompra() {
        
     }
 
     public void consultarCompra() {
-       
+      
     }
 
-  
+   
     public int getIdCompra() {
         return idCompra;
     }
@@ -43,11 +43,11 @@ public class Compra {
         this.idUsuario = idUsuario;
     }
 
-    public List<Producto> getProductos() {
+    public LinkedList<Producto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(LinkedList<Producto> productos) {
         this.productos = productos;
     }
 

@@ -1,36 +1,39 @@
-import java.util.List;
+import java.util.LinkedList;
 
 public class AdministradorAlmacen extends Administrador {
-    private List<Producto> productosGestionados;
-    private List<Compra> comprasRealizadas;
+    private LinkedList<Producto> productosGestionados;
+    private LinkedList<Compra> comprasRealizadas;
 
-    public AdministradorAlmacen(String nombre, int idAdmin, String email, List<Producto> productosGestionados, List<Compra> comprasRealizadas) {
+    public AdministradorAlmacen(String nombre, int idAdmin, String email, LinkedList<Producto> productosGestionados, LinkedList<Compra> comprasRealizadas) {
         super(nombre, idAdmin, email);
         this.productosGestionados = productosGestionados;
         this.comprasRealizadas = comprasRealizadas;
     }
-    // Para añadir con la base de datos: Logica para gestionar los productos, Logica para comprobar compras
+    
+    // Para añadir con la base de datos: Logica para gestionar productos
 
     public void gestionarProductos() {
         
     }
 
     public void comprobarCompras() {
-        
+      
     }
-    public List<Producto> getProductosGestionados() {
+
+ 
+    public LinkedList<Producto> getProductosGestionados() {
         return productosGestionados;
     }
 
-    public void setProductosGestionados(List<Producto> productosGestionados) {
+    public void setProductosGestionados(LinkedList<Producto> productosGestionados) {
         this.productosGestionados = productosGestionados;
     }
 
-    public List<Compra> getComprasRealizadas() {
+    public LinkedList<Compra> getComprasRealizadas() {
         return comprasRealizadas;
     }
 
-    public void setComprasRealizadas(List<Compra> comprasRealizadas) {
+    public void setComprasRealizadas(LinkedList<Compra> comprasRealizadas) {
         this.comprasRealizadas = comprasRealizadas;
     }
 }
