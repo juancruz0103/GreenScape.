@@ -9,7 +9,7 @@ public class AdministradorAlmacen extends Administrador {
         this.productosGestionados = productosGestionados;
         this.comprasRealizadas = comprasRealizadas;
     }
-    // Por añadir con la base de datos: Logica para gestionar los productos, Logica para comprobar compras
+    // Para añadir con la base de datos: Logica para gestionar los productos, Logica para comprobar compras
 
     public void gestionarProductos() {
         

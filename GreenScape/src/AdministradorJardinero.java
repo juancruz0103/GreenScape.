@@ -8,7 +8,7 @@ public class AdministradorJardinero extends Administrador {
         this.progresoSupervisado = progresoSupervisado;
     }
     
-    // Por añadir con la base de datos: Logica para gestionar información, Supervisar progreso.
+    // Para añadir con la base de datos: Logica para gestionar información, Supervisar progreso.
     
 
     public void gestionarInformacion() {
