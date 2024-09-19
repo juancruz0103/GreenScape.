@@ -4,10 +4,10 @@ public class Usuario {
     private String nombre;
     private int idUsuario;
     private String email;
-    private String contrasena;  
-    private String rol;  
+    private String contrasena;
+    private String rol;
 
-    
+
     public Usuario(String nombre, int idUsuario, String email, String contrasena, String rol) {
         this.nombre = nombre;
         this.idUsuario = idUsuario;
@@ -16,17 +16,17 @@ public class Usuario {
         this.rol = rol;
     }
 
-    
+
     public static Usuario login(String email, String contrasena, List<Usuario> usuarios) {
         for (Usuario usuario : usuarios) {
             if (usuario.getEmail().equals(email) && usuario.getContrasena().equals(contrasena)) {
-                return usuario;  
+                return usuario; 
             }
         }
-        return null;  
+        return null; 
     }
 
-    
+
     public String getEmail() {
         return email;
     }
