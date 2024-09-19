@@ -1,35 +1,56 @@
-import java.util.LinkedList;
+import java.util.List;
 
 public class Usuario {
     private String nombre;
     private int idUsuario;
     private String email;
-    private LinkedList<Proyecto> proyectos;
-    private LinkedList<Reseña> reseñas;
+    private String contrasena;
+    private String rol;
 
-    public Usuario(String nombre, int idUsuario, String email, LinkedList<Proyecto> proyectos, LinkedList<Reseña> reseñas) {
+
+    public Usuario(String nombre, int idUsuario, String email, String contrasena, String rol) {
         this.nombre = nombre;
         this.idUsuario = idUsuario;
         this.email = email;
-        this.proyectos = proyectos;
-        this.reseñas = reseñas;
-    }
-    
-    // Para añadir con la base de datos: Logica para ingresar progreso, para consultar planta.
-
-    public void ingresarProgreso(Progreso progreso) {
-        
+        this.contrasena = contrasena;
+        this.rol = rol;
     }
 
-    public void consultarPlanta(Planta planta) {
-        
+
+    public static Usuario login(String email, String contrasena, List<Usuario> usuarios) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getEmail().equals(email) && usuario.getContrasena().equals(contrasena)) {
+                return usuario; 
+            }
+        }
+        return null; 
     }
 
-    public void dejarReseña(Reseña reseña) {
-    	// Para añadir con la base de datos: reseñas.add(reseña);
+
+    public String getEmail() {
+        return email;
     }
 
-   
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -44,29 +65,5 @@ public class Usuario {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LinkedList<Proyecto> getProyectos() {
-        return proyectos;
-    }
-
-    public void setProyectos(LinkedList<Proyecto> proyectos) {
-        this.proyectos = proyectos;
-    }
-
-    public LinkedList<Reseña> getReseñas() {
-        return reseñas;
-    }
-
-    public void setReseñas(LinkedList<Reseña> reseñas) {
-        this.reseñas = reseñas;
     }
 }
