@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// Administradores.
-        
+         
         List<Usuario> usuarios = new LinkedList<>();
         usuarios.add(new Usuario("Admin", 1, "admin@gmail.com", "adminpass", "admin"));
         usuarios.add(new Usuario("Jardinero", 2, "jardinero@gmail.com", "jardineropass", "jardinero"));
@@ -40,12 +40,32 @@ public class Main {
                     switch (elegido) {
 					case 0: 
 	                    elegido = JOptionPane.showOptionDialog(null, "Proyectos", "", 0, 0, null, proyectos, proyectos[0]);
+	                    
+	                    switch (elegido) {
+						case 0:
+							// Ver proyecto activos
+							break;
+						case 1:
+							// Concluidos
+							break;
+						case 2:
+							// Filtrar
+							break;
+						case 3:
+							// Salir
+							break;
+						default:
+
+							break;
+						}
 
 						
 						break;
 					case 1: 
 								
 						// ir a tienda
+						JOptionPane.showMessageDialog(null, "Tienda De Los Productos: \n"+ListProducto.getInstance("Plantas"));
+						
 						
 						break;
                     case 2: 
