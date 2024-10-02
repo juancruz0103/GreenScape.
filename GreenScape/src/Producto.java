@@ -1,23 +1,30 @@
 
 public class Producto {
-    private String nombre;
     private int idProducto;
+    private String nombre;
     private String descripcion;
-    private double precio;
     private int stock;
+    private double precio;
 
-    public Producto(String nombre, int idProducto, String descripcion, double precio, int stock) {
+    public Producto(int idProducto, String nombre, String descripcion, int stock, double precio) {
         this.nombre = nombre;
         this.idProducto = idProducto;
         this.descripcion = descripcion;
-        this.precio = precio;
         this.stock = stock;
+        this.precio = precio;
+    }
+    
+    public Producto(String nombre, String descripcion, int stock, double precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.stock = stock;
+        this.precio = precio;
     }
 
-    public void actualizarProducto(String descripcion, double precio, int stock) {
+    public void actualizarProducto(String descripcion, int stock, double precio) {
         this.descripcion = descripcion;
-        this.precio = precio;
         this.stock = stock;
+        this.precio = precio;
     }
 
     public String getNombre() {

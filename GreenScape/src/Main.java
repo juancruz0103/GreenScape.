@@ -9,10 +9,13 @@ public class Main {
 		
 		// Administradores.
          
+		//Conexion.getInstance();
+		//AdministradorAlmacen.crearProducto(new Producto("Rosa Roja", "Flor roja ornamental.", 30,310.00));
+				
         List<Usuario> usuarios = new LinkedList<>();
         usuarios.add(new Usuario("Admin", 1, "admin@gmail.com", "adminpass", "admin"));
         usuarios.add(new Usuario("Jardinero", 2, "jardinero@gmail.com", "jardineropass", "jardinero"));
-        usuarios.add(new Usuario("Almacen", 3, "almacen@gmail.com", "almacenpass", "almacen"));
+        usuarios.add(new Usuario("Almacen", 3, " .com", "almacenpass", "almacen"));
         
         String[] MenuUsuario = {"Iniciar sesión","Registrar usuario", "Salir"};
         int IdMenu =0;
@@ -64,8 +67,18 @@ public class Main {
 					case 1: 
 								
 						// ir a tienda
-						JOptionPane.showMessageDialog(null, "Tienda De Los Productos: \n"+ListProducto.getInstance("Plantas"));
+						LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
+						JOptionPane.showMessageDialog(null, productos);
 						
+						/*Hacer el condicional con un switch para elegir gestionar en caso de
+						que el admin fuera el almacenero sino no tiene acceso a la gestión.*/
+						/*
+						if (condition) {
+							-> switch acá <-
+						} else {
+
+						}
+						*/						
 						
 						break;
                     case 2: 
