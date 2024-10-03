@@ -7,7 +7,7 @@ public class ListUsuario {
 	public static LinkedList<Usuario> getInstance(){
 		if (usuarios==null) {
 			usuarios = new LinkedList<Usuario>();
-			ListaAdmin();		
+			ListaGreenTeam();		
 		} else {	
 			System.out.println("La lista ya existe");
 		}	
@@ -17,11 +17,13 @@ public class ListUsuario {
 		usuarios.add(usuario);
 	}
 	
-	public static void ListaAdmin() {
-		usuarios.add(new  Usuario("Andres",0 ,"Andres@gmail.com","Andrespass", "Admin"));
-		usuarios.add(new  Usuario("Juan",0 ,"Juan@gmail.com","Juanpass", "Admin"));
-		usuarios.add(new  Usuario("Lucas",0 ,"Lucas@gmail.com","Lucasspass", "Admin"));
-		usuarios.add(new  Usuario("Pepe",0 ,"Pepe@gmail.com","Pepespass", "Usuario"));
+	// Lista de administradores
+	
+	public static void ListaGreenTeam() {
+		usuarios.add(new  Usuario("Andres",0 ,"Andres@gmail.com","Andrespass", "admin"));
+		usuarios.add(new  Usuario("Juan",1 ,"Juan@gmail.com","Juanpass", "almacen"));
+		usuarios.add(new  Usuario("Lucas",2 ,"Lucas@gmail.com","Lucasspass", "admin"));
+		usuarios.add(new  Usuario("Pepe",3 ,"Pepe@gmail.com","Pepespass", "usuario"));
 		
 
 	}

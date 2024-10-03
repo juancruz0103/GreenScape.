@@ -9,10 +9,10 @@ public class ListProducto {
 		
 	}
 	
-	public static LinkedList<Producto> getInstance(String deposito){
+	public static LinkedList<Producto> getInstance(String depositoParametro){
 		if (productos==null) {
 			productos = new LinkedList<Producto>();
-			deposito = deposito;
+			deposito = depositoParametro;
 			rellenarLista();
 		} else {
 			JOptionPane.showMessageDialog(null, "Ya existe");
@@ -26,7 +26,7 @@ public class ListProducto {
 	
 	
 	public static void rellenarLista(){
-		//productos.add(new Producto("Rosa Roja", "Flor roja ornamental.", 30,310.00));
+		productos.add(new Producto("Rosa Roja", "Flor roja ornamental.", 30,310.00));
 	}
 }
  

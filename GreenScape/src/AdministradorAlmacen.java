@@ -17,9 +17,8 @@ public class AdministradorAlmacen extends Administrador {
         this.productosGestionados = productosGestionados;
         this.comprasRealizadas = comprasRealizadas;
      }
-    
-    // Para añadir con la base de datos: Logica para gestionar productos
 
+   
     public static void crearProducto(Producto producto) {
     	
     	try {

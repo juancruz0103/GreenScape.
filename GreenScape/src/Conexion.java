@@ -15,6 +15,7 @@ public class Conexion {
 	private static Conexion instance;
 	
 	private Connection con;
+	
 	private Conexion() {
 		try {
 			con = (Connection) DriverManager.getConnection(URL, USER, PASS);
