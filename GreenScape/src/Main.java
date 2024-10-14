@@ -87,15 +87,8 @@ public class Main {
                     mostrarProyectos();
                     break;
 
-                case 1: // Ir a tienda 
-                	
-                    if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
-                        gestionarTienda();
-                        
-                    } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
-                        JOptionPane.showMessageDialog(null, "Bienvenido almacenero.");
-                        gestionarTienda();
-                    }
+                case 1: 
+                    gestionarTienda(usuarioLogueado);
                     break;
 
                 case 2: 
@@ -111,6 +104,7 @@ public class Main {
             }
         } while (opcionE != 3);  
     }
+
 
     public static void mostrarProyectos() {
         LinkedList<Proyecto> proyectos = Listproyectos.getInstance(); 
@@ -143,36 +137,121 @@ public class Main {
 
     // Gestionar tienda usuario
     
-    public static void gestionarTienda() {
-        String[] opcionesTienda = {"Ver productos", "Agregar producto", "Eliminar producto", "Salir"};
+    public static void gestionarTienda(Usuario usuarioLogueado) {
+        String[] opcionesTienda;
+
+        // Si es usuario, solo puede ver productos y realizar compras
+        if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
+            opcionesTienda = new String[]{"Ver productos", "Comprar productos", "Salir"};
+        } 
+   
+        else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+            opcionesTienda = new String[]{"Ver productos", "Agregar producto", "Actualizar producto", "Eliminar producto", "Salir"};
+        } else {
+            JOptionPane.showMessageDialog(null, "Rol no autorizado para gestionar la tienda.");
+            return;
+        }
+
         int opcionTienda = JOptionPane.showOptionDialog(null, "Gestión de la tienda", "", 0, JOptionPane.QUESTION_MESSAGE, null, opcionesTienda, opcionesTienda[0]);
 
         switch (opcionTienda) {
-            case 0: 
+            case 0: // Ver productos
                 LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
-                JOptionPane.showMessageDialog(null, productos);
+                StringBuilder listaProductos = new StringBuilder();
+                listaProductos.append("Productos disponibles:\n");
+
+                for (Producto producto : productos) {
+                    listaProductos.append("ID: ").append(producto.getIdProducto())
+                                  .append(", Nombre: ").append(producto.getNombre())
+                                  .append(", Descripción: ").append(producto.getDescripcion())
+                                  .append(", Stock: ").append(producto.getStock())
+                                  .append(", Precio: $").append(producto.getPrecio())
+                                  .append("\n");
+                }
+
+                JOptionPane.showMessageDialog(null, listaProductos.toString());
                 break;
 
-            case 1: 
-            	
-            	// Agregar producto
-                
+            // Funcionalidades para los usuarios
+            case 1:
+                if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
+                    realizarCompra(usuarioLogueado);
+                } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                    // Almacenero: agregar producto
+                    String nombreProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
+                    String descripcion = JOptionPane.showInputDialog("Ingrese una descripción del producto:");
+                    int stock = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad en stock:"));
+                    double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio del producto:"));
+
+                    Producto nuevoProducto = new Producto(nombreProducto, descripcion, stock, precio);
+                    AdministradorAlmacen.crearProducto(nuevoProducto);
+                }
                 break;
 
+            // Solo para los almaceneros
             case 2: 
-            	
-            	// Eliminar producto
-             
+                if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                    int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto a actualizar:"));
+                    String nuevoNombre = JOptionPane.showInputDialog("Nuevo nombre del producto:");
+                    String nuevaDescripcion = JOptionPane.showInputDialog("Nueva descripción del producto:");
+                    int nuevoStock = Integer.parseInt(JOptionPane.showInputDialog("Nuevo stock del producto:"));
+                    double nuevoPrecio = Double.parseDouble(JOptionPane.showInputDialog("Nuevo precio del producto:"));
+
+                    Producto productoActualizado = new Producto(idProducto, nuevoNombre, nuevaDescripcion, nuevoStock, nuevoPrecio);
+                    AdministradorAlmacen.actualizarProducto(productoActualizado);
+                }
                 break;
 
-            case 3:
-            	
-            	// Salir de la tienda
-            	
+            case 3: 
+                if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                    int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto a eliminar:"));
+                    AdministradorAlmacen.eliminarProducto(idProducto);
+                }
+                break;
+
+            case 4:
+                // Salir
                 break;
 
             default:
                 break;
         }
     }
+
+    public static void realizarCompra(Usuario usuarioLogueado) {
+        LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
+        StringBuilder listaProductos = new StringBuilder();
+        listaProductos.append("Productos disponibles:\n");
+
+        for (Producto producto : productos) {
+            listaProductos.append("ID: ").append(producto.getIdProducto())
+                          .append(", Nombre: ").append(producto.getNombre())
+                          .append(", Precio: $").append(producto.getPrecio())
+                          .append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, listaProductos.toString());
+
+        // Simular compra (Pendiente)
+        int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto que desea comprar:"));
+        Producto productoSeleccionado = null;
+
+        for (Producto producto : productos) {
+            if (producto.getIdProducto() == idProducto) {
+                productoSeleccionado = producto;
+                break;
+            }
+        }
+
+        if (productoSeleccionado != null) {
+            int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad que desea comprar:"));
+            double total = productoSeleccionado.getPrecio() * cantidad;
+            JOptionPane.showMessageDialog(null, "Compra realizada exitosamente. Total: $" + total);
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Producto no encontrado.");
+        }
+    }
+
+
 }

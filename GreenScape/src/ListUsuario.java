@@ -17,7 +17,7 @@ public class ListUsuario {
 		usuarios.add(usuario);
 	}
 	
-	// Lista de administradores
+	// Lista de usuarios
 	
 	public static void ListaGreenTeam() {
 		usuarios.add(new  Usuario("Andres",0 ,"Andres@gmail.com","Andrespass", "admin"));
