@@ -1,5 +1,8 @@
+package DLL;
 import java.util.LinkedList; 
 import javax.swing.*;
+
+import BLL.Producto;
 
 public class ListProducto {
 	private static LinkedList<Producto> productos;

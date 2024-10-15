@@ -1,4 +1,7 @@
+package DLL;
  import java.util.LinkedList;
+
+import BLL.Usuario;
 
 public class ListUsuario {
 

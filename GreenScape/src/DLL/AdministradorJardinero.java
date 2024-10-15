@@ -1,4 +1,8 @@
+package DLL;
 import java.util.LinkedList;
+
+import BLL.Administrador;
+import BLL.Progreso;
 
 public class AdministradorJardinero extends Administrador {
     private LinkedList<Progreso> progresoSupervisado;

@@ -1,5 +1,9 @@
+package DLL;
 
 import javax.swing.JOptionPane;
+
+import BLL.Producto;
+
 import java.util.LinkedList;
 
 public class GestionProductos {

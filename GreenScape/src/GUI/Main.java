@@ -1,4 +1,13 @@
+package GUI;
 import javax.swing.JOptionPane;
+
+import BLL.Listproyectos;
+import BLL.Producto;
+import BLL.Proyecto;
+import BLL.Usuario;
+import DLL.AdministradorAlmacen;
+import DLL.ListUsuario;
+
 import java.util.LinkedList;
 
 public class Main {
