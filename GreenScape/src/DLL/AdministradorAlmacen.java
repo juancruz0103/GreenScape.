@@ -4,7 +4,6 @@ import com.mysql.jdbc.PreparedStatement;
 
 import BLL.Administrador;
 import BLL.Compra;
-import BLL.Conexion;
 import BLL.Producto;
 
 import java.sql.ResultSet;
