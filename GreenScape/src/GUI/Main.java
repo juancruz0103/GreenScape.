@@ -1,5 +1,8 @@
 package GUI;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.LinkedList;
 
 import BLL.Listproyectos;
 import BLL.Producto;
@@ -8,19 +11,19 @@ import BLL.Usuario;
 import DLL.AdministradorAlmacen;
 import DLL.ListUsuario;
 
-import java.util.LinkedList;
-
 public class Main {
 
     public static void main(String[] args) {
-       
-        LinkedList<Usuario> usuarios = ListUsuario.getInstance();
+    	UIManager.put("OptionPane.messageForeground", new Color(0, 100, 0));  
+        UIManager.put("OptionPane.background", Color.white);       
+        UIManager.put("Panel.background", Color.white);             
+        UIManager.put("Button.background", Color.white);       
+        UIManager.put("Button.foreground", Color.BLACK);            
 
-        
+        LinkedList<Usuario> usuarios = ListUsuario.getInstance();
         MenuPrincipal(usuarios);
     }
 
-    
     public static void MenuPrincipal(LinkedList<Usuario> usuarios) {
         String[] MenuUsuario = {"Iniciar sesión", "Registrar usuario", "Salir"};
         int IdMenu;
@@ -29,26 +32,24 @@ public class Main {
             IdMenu = JOptionPane.showOptionDialog(null, "Bienvenido a la plataforma de GreenScape. Elija una opción", null, 0, JOptionPane.QUESTION_MESSAGE, null, MenuUsuario, MenuUsuario[0]);
 
             switch (IdMenu) {
-                case 0: 
+                case 0:
                     iniciarSesion(usuarios);
                     break;
 
-                case 1: 
+                case 1:
                     registrarUsuario();
                     break;
 
-                case 2: 
+                case 2:
                     JOptionPane.showMessageDialog(null, "Gracias por participar en la demo de GreenScape.");
                     break;
 
                 default:
                     break;
             }
-        } while (IdMenu != 2);  
+        } while (IdMenu != 2);
     }
 
-    
-    
     public static void iniciarSesion(LinkedList<Usuario> usuarios) {
         String email = JOptionPane.showInputDialog("Ingrese su email:");
         String contrasena = JOptionPane.showInputDialog("Ingrese su contraseña:");
@@ -83,24 +84,23 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
     }
 
-
     public static void mostrarMenuUsuario(Usuario usuarioLogueado) {
-        String[] opcionesUsuario = {"Mis proyectos", "Ir a tienda", "Ver progreso", "Salir"};
+        String[] opcionesUsuario = {"Curso", "Ir a tienda", "Ver progreso", "Salir"};
         int opcionE;
 
         do {
             opcionE = JOptionPane.showOptionDialog(null, "(GreenScape) Menu general", "", 0, JOptionPane.QUESTION_MESSAGE, null, opcionesUsuario, opcionesUsuario[0]);
 
             switch (opcionE) {
-                case 0: 
+                case 0:
                     mostrarProyectos();
                     break;
 
-                case 1: 
+                case 1:
                     gestionarTienda(usuarioLogueado);
                     break;
 
-                case 2: 
+                case 2:
                     mostrarProgreso();
                     break;
 
@@ -111,12 +111,11 @@ public class Main {
                 default:
                     break;
             }
-        } while (opcionE != 3);  
+        } while (opcionE != 3);
     }
 
-
     public static void mostrarProyectos() {
-        LinkedList<Proyecto> proyectos = Listproyectos.getInstance(); 
+        LinkedList<Proyecto> proyectos = Listproyectos.getInstance();
 
         if (proyectos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay proyectos registrados.");
@@ -128,33 +127,25 @@ public class Main {
 
         for (Proyecto proyecto : proyectos) {
             listaProyectos.append("ID: ").append(proyecto.getIdProyecto())
-                          .append(", Nombre: ").append(proyecto.getNombre())
-                          .append(", Fecha de Inicio: ").append(proyecto.getFechaInicio())
-                          .append(", Estado: ").append(proyecto.getEstado())
-                          .append("\n");
+                    .append(", Nombre: ").append(proyecto.getNombre())
+                    .append(", Fecha de Inicio: ").append(proyecto.getFechaInicio())
+                    .append(", Estado: ").append(proyecto.getEstado())
+                    .append("\n");
         }
 
         JOptionPane.showMessageDialog(null, listaProyectos.toString());
     }
 
-
     public static void mostrarProgreso() {
         JOptionPane.showMessageDialog(null, "Progreso del usuario.");
-     
-        // por agregar
     }
 
-    // Gestionar tienda usuario
-    
     public static void gestionarTienda(Usuario usuarioLogueado) {
         String[] opcionesTienda;
 
-        // Si es usuario, solo puede ver productos y realizar compras
         if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
             opcionesTienda = new String[]{"Ver productos", "Comprar productos", "Salir"};
-        } 
-   
-        else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+        } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
             opcionesTienda = new String[]{"Ver productos", "Agregar producto", "Actualizar producto", "Eliminar producto", "Salir"};
         } else {
             JOptionPane.showMessageDialog(null, "Rol no autorizado para gestionar la tienda.");
@@ -164,29 +155,27 @@ public class Main {
         int opcionTienda = JOptionPane.showOptionDialog(null, "Gestión de la tienda", "", 0, JOptionPane.QUESTION_MESSAGE, null, opcionesTienda, opcionesTienda[0]);
 
         switch (opcionTienda) {
-            case 0: // Ver productos
+            case 0:
                 LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
                 StringBuilder listaProductos = new StringBuilder();
                 listaProductos.append("Productos disponibles:\n");
 
                 for (Producto producto : productos) {
                     listaProductos.append("ID: ").append(producto.getIdProducto())
-                                  .append(", Nombre: ").append(producto.getNombre())
-                                  .append(", Descripción: ").append(producto.getDescripcion())
-                                  .append(", Stock: ").append(producto.getStock())
-                                  .append(", Precio: $").append(producto.getPrecio())
-                                  .append("\n");
+                            .append(": ").append(producto.getNombre())
+                            .append(", Descripción: ").append(producto.getDescripcion())
+                            .append(", Stock actual: ").append(producto.getStock())
+                            .append(", Precio: $").append(producto.getPrecio())
+                            .append("\n");
                 }
 
                 JOptionPane.showMessageDialog(null, listaProductos.toString());
                 break;
 
-            // Funcionalidades para los usuarios
             case 1:
                 if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
                     realizarCompra(usuarioLogueado);
                 } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
-                    // Almacenero: agregar producto
                     String nombreProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
                     String descripcion = JOptionPane.showInputDialog("Ingrese una descripción del producto:");
                     int stock = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad en stock:"));
@@ -197,8 +186,7 @@ public class Main {
                 }
                 break;
 
-            // Solo para los almaceneros
-            case 2: 
+            case 2:
                 if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
                     int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto a actualizar:"));
                     String nuevoNombre = JOptionPane.showInputDialog("Nuevo nombre del producto:");
@@ -211,7 +199,7 @@ public class Main {
                 }
                 break;
 
-            case 3: 
+            case 3:
                 if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
                     int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto a eliminar:"));
                     AdministradorAlmacen.eliminarProducto(idProducto);
@@ -219,7 +207,6 @@ public class Main {
                 break;
 
             case 4:
-                // Salir
                 break;
 
             default:
@@ -234,14 +221,13 @@ public class Main {
 
         for (Producto producto : productos) {
             listaProductos.append("ID: ").append(producto.getIdProducto())
-                          .append(", Nombre: ").append(producto.getNombre())
-                          .append(", Precio: $").append(producto.getPrecio())
-                          .append("\n");
+                    .append(", Nombre: ").append(producto.getNombre())
+                    .append(", Precio: $").append(producto.getPrecio())
+                    .append("\n");
         }
 
         JOptionPane.showMessageDialog(null, listaProductos.toString());
 
-        // Simular compra (Pendiente)
         int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto que desea comprar:"));
         Producto productoSeleccionado = null;
 
@@ -255,12 +241,9 @@ public class Main {
         if (productoSeleccionado != null) {
             int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad que desea comprar:"));
             double total = productoSeleccionado.getPrecio() * cantidad;
-            JOptionPane.showMessageDialog(null, "Compra realizada exitosamente. Total: $" + total);
-            
+            JOptionPane.showMessageDialog(null, "Compra realizada exitosamente. Total a pagar: $" + total);
         } else {
             JOptionPane.showMessageDialog(null, "Producto no encontrado.");
         }
     }
-
-
 }
