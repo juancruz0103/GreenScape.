@@ -62,6 +62,62 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Credenciales incorrectas. Intente de nuevo.");
         }
     }
+    
+    public static boolean validarContraseña( String contrasena){
+    	boolean flag = true;
+    	boolean validarChar = false;
+    	boolean validarMayus = false; 
+    	boolean validarMinus = false; 
+    	boolean validarNum = false; 
+    	
+    	for (int j = 0; j < contrasena.length(); j++) {
+        	char c = contrasena.charAt(j);
+        	// Contraseña 8 caracteres, 1 num, 1 mayus, 1 minus.   	
+        	
+        	if (contrasena.length() >= 8 ) {
+        		validarChar = true;
+        		for (int i = 0; i < contrasena.length(); i++) {
+					
+        			if (Character.isDigit(contrasena.charAt(i))) {
+        				validarNum = true;
+					}
+        			if (Character.isUpperCase(contrasena.charAt(i))) {
+        				validarMayus = true;
+					}
+        			if (Character.isLowerCase(contrasena.charAt(i))) {	
+        				validarMinus = true;
+        			}
+        		}
+        	}
+        }   	 
+    	
+    	
+    	  if(!validarChar){
+    		JOptionPane.showMessageDialog(null, "Tiene que tener 8 caracteres como minimo.");
+    	  }
+    	
+    	  if(!validarMayus){
+          	JOptionPane.showMessageDialog(null, "Una mayuscula como minimo.");
+          }
+        
+          if(!validarMinus){
+          	JOptionPane.showMessageDialog(null, "Una minuscula como minimo.");
+          }
+          
+          if(!validarNum){
+          	JOptionPane.showMessageDialog(null, "tiene que contener numeros.");
+          }
+          
+          if(validarChar && validarMayus && validarMinus && validarNum == true){
+        	  flag = true;
+          }else {
+        	  flag = false;
+          }
+          
+          
+          return flag;
+        	
+    	}
 
     public static void registrarUsuario() {
         String nombre = JOptionPane.showInputDialog("Ingrese nombre");
@@ -74,8 +130,15 @@ public class Main {
             return;
         }
 
-        String email = JOptionPane.showInputDialog("Ingrese email");
-        String contrasena = JOptionPane.showInputDialog("Ingrese contraseña");
+        String email = JOptionPane.showInputDialog("Ingrese email");     
+        String contrasena;
+        boolean validar;
+        
+        do {
+        	contrasena = JOptionPane.showInputDialog("Ingrese contraseña");
+        	validar = validarContraseña(contrasena);	
+		} while (validar==false);    
+        
         String rol = JOptionPane.showInputDialog("Ingrese rol (usuario, estudiante)");
 
         Usuario nuevoUsuario = new Usuario(nombre, idUsuario, email, contrasena, rol);
