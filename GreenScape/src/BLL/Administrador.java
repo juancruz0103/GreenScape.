@@ -3,7 +3,7 @@ package BLL;
 public class Administrador {
 	private String nombre;
 	private int idAdmin;
-	private String email;
+	protected static String email;
 	
 	public Administrador(String nombre, int idAdmin, String email) {
 		

@@ -1,10 +1,13 @@
 package GUI;
 import javax.swing.JOptionPane;
+
+import BLL.Curso;
 import BLL.Listproyectos;
 import BLL.Producto;
 import BLL.Proyecto;
 import BLL.Usuario;
 import DLL.AdministradorAlmacen;
+import DLL.AdministradorJardinero;
 import DLL.ListUsuario;
 
 import java.util.LinkedList;
@@ -157,6 +160,24 @@ public class Main {
             switch (opcionE) {
                 case 0: 
                     mostrarProyectos();
+                    if (usuarioLogueado.getRol().equalsIgnoreCase("jardinero")) {
+                        LinkedList<Curso> cursos = AdministradorJardinero.mostrarCursos();
+                        if (cursos.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "No hay cursos registrados.");
+                        } else {
+                            StringBuilder listaCursos = new StringBuilder();
+                            listaCursos.append("Cursos disponibles:\n");
+                            for (Curso curso : cursos) {
+                                listaCursos.append("ID: ").append(curso.getIdCurso())
+                                          .append(", Nombre: ").append(curso.getNombre())
+                                          .append(", Información: ").append(curso.getDescripcion())
+                                          .append("\n");
+                            }
+                            JOptionPane.showMessageDialog(null, listaCursos.toString());
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Solo los jardineros pueden ver los cursos.");
+                    }
                     break;
 
                 case 1: 
