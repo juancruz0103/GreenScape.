@@ -216,7 +216,7 @@ public class Main {
         if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
             opcionesTienda = new String[]{"Ver productos", "Comprar productos", "Salir"};
         } 
-   
+        // Si es almacenero, puede ver productos y gestionar los productos
         else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
             opcionesTienda = new String[]{"Ver productos", "Agregar producto", "Actualizar producto", "Eliminar producto", "Salir"};
         } else {
@@ -224,69 +224,98 @@ public class Main {
             return;
         }
 
-        int opcionTienda = JOptionPane.showOptionDialog(null, "Gestión de la tienda", "", 0, JOptionPane.QUESTION_MESSAGE, null, opcionesTienda, opcionesTienda[0]);
+        while (true) {
+            int opcionTienda = JOptionPane.showOptionDialog(null, "Gestión de la tienda", "", 
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcionesTienda, opcionesTienda[0]);
+            
+            if (opcionTienda == JOptionPane.CLOSED_OPTION || opcionTienda == -1) {
+                continue;
+            }
 
-        switch (opcionTienda) {
-            case 0: // Ver productos
-                LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
-                StringBuilder listaProductos = new StringBuilder();
-                listaProductos.append("Productos disponibles:\n");
+            switch (opcionTienda) {
+                case 0:
+                    LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
+                    StringBuilder listaProductos = new StringBuilder();
+                    listaProductos.append("Productos disponibles:\n");
 
-                for (Producto producto : productos) {
-                    listaProductos.append("ID: ").append(producto.getIdProducto())
-                                  .append(": ").append(producto.getNombre())
-                                  .append(", Descripción: ").append(producto.getDescripcion())
-                                  .append(", Stock actual: ").append(producto.getStock())
-                                  .append(", Precio: $").append(producto.getPrecio())
-                                  .append("\n");
-                }
+                    for (Producto producto : productos) {
+                        listaProductos.append("ID: ").append(producto.getIdProducto())
+                                      .append(": ").append(producto.getNombre())
+                                      .append(", Descripción: ").append(producto.getDescripcion())
+                                      .append(", Stock actual: ").append(producto.getStock())
+                                      .append(", Precio: $").append(producto.getPrecio())
+                                      .append("\n");
+                    }
 
-                JOptionPane.showMessageDialog(null, listaProductos.toString());
-                break;
+                    JOptionPane.showMessageDialog(null, listaProductos.toString());
+                    break;
 
-            // Funcionalidades para los usuarios
-            case 1:
-                if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
-                    realizarCompra(usuarioLogueado);
-                } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
-                    // Almacenero: agregar producto
-                    String nombreProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
-                    String descripcion = JOptionPane.showInputDialog("Ingrese una descripción del producto:");
-                    int stock = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad en stock:"));
-                    double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio del producto:"));
+                // Funcionalidades para los usuarios
+                case 1:
+                    if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
+                        realizarCompra(usuarioLogueado);
+                    } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                        // Almacenero: agregar producto
+                        String nombreProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
+                        if (nombreProducto == null || nombreProducto.trim().isEmpty()) continue;
 
-                    Producto nuevoProducto = new Producto(nombreProducto, descripcion, stock, precio);
-                    AdministradorAlmacen.crearProducto(nuevoProducto);
-                }
-                break;
+                        String descripcion = JOptionPane.showInputDialog("Ingrese una descripción del producto:");
+                        if (descripcion == null || descripcion.trim().isEmpty()) continue;
 
-            // Solo para los almaceneros
-            case 2: 
-                if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
-                    int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto a actualizar:"));
-                    String nuevoNombre = JOptionPane.showInputDialog("Nuevo nombre del producto:");
-                    String nuevaDescripcion = JOptionPane.showInputDialog("Nueva descripción del producto:");
-                    int nuevoStock = Integer.parseInt(JOptionPane.showInputDialog("Nuevo stock del producto:"));
-                    double nuevoPrecio = Double.parseDouble(JOptionPane.showInputDialog("Nuevo precio del producto:"));
+                        String stockStr = JOptionPane.showInputDialog("Ingrese la cantidad en stock:");
+                        if (stockStr == null || stockStr.trim().isEmpty()) continue;
+                        int stock = Integer.parseInt(stockStr);
 
-                    Producto productoActualizado = new Producto(idProducto, nuevoNombre, nuevaDescripcion, nuevoStock, nuevoPrecio);
-                    AdministradorAlmacen.actualizarProducto(productoActualizado);
-                }
-                break;
+                        String precioStr = JOptionPane.showInputDialog("Ingrese el precio del producto:");
+                        if (precioStr == null || precioStr.trim().isEmpty()) continue;
+                        double precio = Double.parseDouble(precioStr);
 
-            case 3: 
-                if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
-                    int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto a eliminar:"));
-                    AdministradorAlmacen.eliminarProducto(idProducto);
-                }
-                break;
+                        Producto nuevoProducto = new Producto(nombreProducto, descripcion, stock, precio);
+                        AdministradorAlmacen.crearProducto(nuevoProducto);
+                    }
+                    break;
 
-            case 4:
-                // Salir
-                break;
+                // Solo para los almaceneros
+                case 2: 
+                    if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                        String idProductoStr = JOptionPane.showInputDialog("Ingrese el ID del producto a actualizar:");
+                        if (idProductoStr == null || idProductoStr.trim().isEmpty()) continue;
+                        int idProducto = Integer.parseInt(idProductoStr);
 
-            default:
-                break;
+                        String nuevoNombre = JOptionPane.showInputDialog("Nuevo nombre del producto:");
+                        if (nuevoNombre == null || nuevoNombre.trim().isEmpty()) continue;
+
+                        String nuevaDescripcion = JOptionPane.showInputDialog("Nueva descripción del producto:");
+                        if (nuevaDescripcion == null || nuevaDescripcion.trim().isEmpty()) continue;
+
+                        String nuevoStockStr = JOptionPane.showInputDialog("Nuevo stock del producto:");
+                        if (nuevoStockStr == null || nuevoStockStr.trim().isEmpty()) continue;
+                        int nuevoStock = Integer.parseInt(nuevoStockStr);
+
+                        String nuevoPrecioStr = JOptionPane.showInputDialog("Nuevo precio del producto:");
+                        if (nuevoPrecioStr == null || nuevoPrecioStr.trim().isEmpty()) continue;
+                        double nuevoPrecio = Double.parseDouble(nuevoPrecioStr);
+
+                        Producto productoActualizado = new Producto(idProducto, nuevoNombre, nuevaDescripcion, nuevoStock, nuevoPrecio);
+                        AdministradorAlmacen.actualizarProducto(productoActualizado);
+                    }
+                    break;
+
+                case 3: // Eliminar producto (solo para almaceneros)
+                    if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                        String idProductoStr = JOptionPane.showInputDialog("Ingrese el ID del producto a eliminar:");
+                        if (idProductoStr == null || idProductoStr.trim().isEmpty()) continue;
+                        int idProducto = Integer.parseInt(idProductoStr);
+                        AdministradorAlmacen.eliminarProducto(idProducto);
+                    }
+                    break;
+
+                case 4:
+                    return;
+
+                default:
+                    break;
+            }
         }
     }
 
@@ -304,10 +333,12 @@ public class Main {
 
         JOptionPane.showMessageDialog(null, listaProductos.toString());
 
-        // Simular compra (Pendiente)
-        int idProducto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del producto que desea comprar:"));
-        Producto productoSeleccionado = null;
+        // Simular compra
+        String idProductoStr = JOptionPane.showInputDialog("Ingrese el ID del producto que desea comprar:");
+        if (idProductoStr == null || idProductoStr.trim().isEmpty()) return;
+        int idProducto = Integer.parseInt(idProductoStr);
 
+        Producto productoSeleccionado = null;
         for (Producto producto : productos) {
             if (producto.getIdProducto() == idProducto) {
                 productoSeleccionado = producto;
@@ -316,14 +347,15 @@ public class Main {
         }
 
         if (productoSeleccionado != null) {
-            int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad que desea comprar:"));
+            String cantidadStr = JOptionPane.showInputDialog("Ingrese la cantidad que desea comprar:");
+            if (cantidadStr == null || cantidadStr.trim().isEmpty()) return;
+            int cantidad = Integer.parseInt(cantidadStr);
+
             double total = productoSeleccionado.getPrecio() * cantidad;
             JOptionPane.showMessageDialog(null, "Compra realizada exitosamente. Total: $" + total);
-            
         } else {
             JOptionPane.showMessageDialog(null, "Producto no encontrado.");
         }
     }
-
 
 }
