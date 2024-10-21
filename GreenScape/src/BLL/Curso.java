@@ -29,11 +29,7 @@ public class Curso {
     public int administrador_idadministrador() {
 		return administrador_idadministrador;
 	}
-    public int administrador_idadministrador() {
-		return administrador_idadministrador;
-	}public int administrador_idadministrador() {
-		return administrador_idadministrador;
-	}
+
 	
 
 }
