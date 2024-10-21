@@ -67,59 +67,53 @@ public class Main {
     }
     
     public static boolean validarContraseña( String contrasena){
-    	boolean flag = true;
-    	boolean validarChar = false;
+    	boolean repetir = true;
+    	boolean valCaracter = false;
     	boolean validarMayus = false; 
     	boolean validarMinus = false; 
     	boolean validarNum = false; 
     	
     	for (int j = 0; j < contrasena.length(); j++) {
         	char c = contrasena.charAt(j);
-        	// Contraseña 8 caracteres, 1 num, 1 mayus, 1 minus.   	
         	
-        	if (contrasena.length() >= 8 ) {
-        		validarChar = true;
-        		for (int i = 0; i < contrasena.length(); i++) {
-					
-        			if (Character.isDigit(contrasena.charAt(i))) {
-        				validarNum = true;
-					}
-        			if (Character.isUpperCase(contrasena.charAt(i))) {
-        				validarMayus = true;
-					}
-        			if (Character.isLowerCase(contrasena.charAt(i))) {	
-        				validarMinus = true;
-        			}
-        		}
-        	}
-        }   	 
+        	// Contraseña 8 caracteres, 1 num, 1 mayus, 1 minus.   	
+        	for (int i = 0; i < contrasena.length(); i++) {
+				
+    			if (Character.isDigit(contrasena.charAt(i))) {
+    				validarNum = true;
+				}
+    			if (Character.isUpperCase(contrasena.charAt(i))) {
+    				validarMayus = true;
+				}
+    			if (Character.isLowerCase(contrasena.charAt(i))) {	
+    				validarMinus = true;
+    			}
+    		}
+        }   	
     	
-    	
-    	  if(!validarChar){
+    	  if (contrasena.length() < 8 ) {
     		JOptionPane.showMessageDialog(null, "Tiene que tener 8 caracteres como minimo.");
+    	  }else{
+    		valCaracter = true;
     	  }
     	
-    	  if(!validarMayus){
+    	  if(validarMayus == false){
           	JOptionPane.showMessageDialog(null, "Una mayuscula como minimo.");
           }
         
-          if(!validarMinus){
+          if(validarMinus == false){
           	JOptionPane.showMessageDialog(null, "Una minuscula como minimo.");
           }
           
-          if(!validarNum){
+          if(validarNum == false){
           	JOptionPane.showMessageDialog(null, "tiene que contener numeros.");
           }
           
-          if(validarChar && validarMayus && validarMinus && validarNum == true){
-        	  flag = true;
-          }else {
-        	  flag = false;
+          if(valCaracter && validarMayus && validarMinus && validarNum == true){
+        	  repetir = false;
           }
           
-          
-          return flag;
-        	
+          return repetir;
     	}
 
     public static void registrarUsuario() {
@@ -135,12 +129,12 @@ public class Main {
 
         String email = JOptionPane.showInputDialog("Ingrese email");     
         String contrasena;
-        boolean validar;
+        boolean repetir;
         
         do {
         	contrasena = JOptionPane.showInputDialog("Ingrese contraseña");
-        	validar = validarContraseña(contrasena);	
-		} while (validar==false);    
+        	repetir = validarContraseña(contrasena);	
+		} while (repetir==true);    
         
         String rol = JOptionPane.showInputDialog("Ingrese rol (usuario, estudiante)");
 
