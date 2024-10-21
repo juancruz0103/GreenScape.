@@ -164,7 +164,7 @@ public class Main {
                             for (Curso curso : cursos) {
                                 listaCursos.append("ID: ").append(curso.getIdCurso())
                                           .append(", Nombre: ").append(curso.getNombre())
-                                          .append(", Información: ").append(curso.getDescripcion())
+                                          .append(", Información: ").append(curso.getinformacion())
                                           .append("\n");
                             }
                             JOptionPane.showMessageDialog(null, listaCursos.toString());

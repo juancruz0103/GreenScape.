@@ -28,7 +28,7 @@ public class AdministradorJardinero extends Administrador {
             ResultSet resultados = statement.executeQuery();
 
             while (resultados.next()) {
-                cursos.add(new Curso(resultados.getInt("idcurso"),resultados.getString("nombre"), resultados.getString("informacion"), email));
+                cursos.add(new Curso(resultados.getInt("idcurso"),resultados.getString("nombre"), resultados.getString("informacion"), email, resultados.getInt("administrador_idadministrador")));
             }
             resultados.close();
             statement.close();
@@ -42,10 +42,11 @@ public class AdministradorJardinero extends Administrador {
     public static Boolean crearCurso(Curso curso) {
         try {
             PreparedStatement statement = (PreparedStatement) con.prepareStatement(
-                    "INSERT INTO `jardinero`(`idjardinero_modulo`, `email`, `nombre`, `informacion_jardineria`, `administrador_idadministrador`, `planta_idplanta`) VALUES (?,?,?,?,?,?)"
+                    "INSERT INTO `jardinero`( `email`, `nombre`, `informacion_jardineria`, `administrador_idadministrador`, `planta_idplanta`) VALUES (?,?,?,?,?)"
             );
             statement.setString(1, curso.getNombre());
-            statement.setString(2, curso.getDescripcion());
+            statement.setString(2, curso.getinformacion()); //informacion = informacion_jardineria
+            statement.setInt(3, curso.administrador_idadministrador());
 
             int fila = statement.executeUpdate();
 
@@ -63,11 +64,11 @@ public class AdministradorJardinero extends Administrador {
     public static Boolean actualizarCurso(Curso curso) {
         try {
             PreparedStatement statement = (PreparedStatement) con.prepareStatement(
-                    "UPDATE `jardinero` SET `idjardinero_modulo`= ?,`email`= ?,`nombre`= ?,`informacion_jardineria`= ?,`administrador_idadministrador`= ?,`planta_idplanta`= ?"
+                    "UPDATE `jardinero` SET `nombre`= ?`email`= ?,`informacion_jardineria`= ?,`administrador_idadministrador`= ?,`planta_idplanta`= ?"
             );
             statement.setString(1, curso.getNombre());
-            statement.setString(2, curso.getDescripcion());
-            statement.setInt(3, curso.getIdCurso());
+            statement.setString(2, curso.getinformacion()); //informacion = informacion_jardineria
+            statement.setInt(3, curso.administrador_idadministrador());
 
             int fila = statement.executeUpdate();
 
