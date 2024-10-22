@@ -149,10 +149,11 @@ public class Main {
         int opcionE;
 
         do {
-            opcionE = JOptionPane.showOptionDialog(null, "(GreenScape) Menu general", "", 0, JOptionPane.QUESTION_MESSAGE, null, opcionesUsuario, opcionesUsuario[0]);
+            opcionE = JOptionPane.showOptionDialog(null, "(GreenScape) Menú general", "", 0, 
+                          JOptionPane.QUESTION_MESSAGE, null, opcionesUsuario, opcionesUsuario[0]);
 
             switch (opcionE) {
-                case 0: 
+                case 0:
                     mostrarProyectos();
                     if (usuarioLogueado.getRol().equalsIgnoreCase("jardinero")) {
                         LinkedList<Curso> cursos = AdministradorJardinero.mostrarCursos();
@@ -170,27 +171,25 @@ public class Main {
                             JOptionPane.showMessageDialog(null, listaCursos.toString());
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Solo los jardineros pueden ver los cursos.");
+                        JOptionPane.showMessageDialog(null, "Solo los jardineros pueden administrar los cursos.");
                     }
                     break;
 
-                case 1: 
+                case 1:
                     gestionarTienda(usuarioLogueado);
                     break;
 
-                case 2: 
+                case 2:
                     mostrarProgreso();
                     break;
 
-                case 3:
+                case 3:  
                     JOptionPane.showMessageDialog(null, "Saliendo del menú del usuario.");
-                    break;
-
-                default:
-                    break;
+                    return;
             }
-        } while (opcionE != 3);  
+        } while (true);
     }
+
 
 
     public static void mostrarProyectos() {
@@ -239,16 +238,18 @@ public class Main {
             return;
         }
 
-        while (true) {
+        boolean continuar = true;
+        while (continuar) {
             int opcionTienda = JOptionPane.showOptionDialog(null, "Gestión de la tienda", "", 
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcionesTienda, opcionesTienda[0]);
-            
-            if (opcionTienda == JOptionPane.CLOSED_OPTION || opcionTienda == -1) {
+
+            if (opcionTienda == -1 || opcionesTienda[opcionTienda].equals("Salir")) {
+                continuar = false;
                 continue;
             }
 
             switch (opcionTienda) {
-                case 0:
+                case 0: // Ver productos
                     LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
                     StringBuilder listaProductos = new StringBuilder();
                     listaProductos.append("Productos disponibles:\n");
@@ -265,12 +266,10 @@ public class Main {
                     JOptionPane.showMessageDialog(null, listaProductos.toString());
                     break;
 
-                // Funcionalidades para los usuarios
                 case 1:
                     if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
                         realizarCompra(usuarioLogueado);
                     } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
-                        // Almacenero: agregar producto
                         String nombreProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
                         if (nombreProducto == null || nombreProducto.trim().isEmpty()) continue;
 
@@ -290,8 +289,7 @@ public class Main {
                     }
                     break;
 
-                // Solo para los almaceneros
-                case 2: 
+                case 2:
                     if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
                         String idProductoStr = JOptionPane.showInputDialog("Ingrese el ID del producto a actualizar:");
                         if (idProductoStr == null || idProductoStr.trim().isEmpty()) continue;
@@ -316,7 +314,7 @@ public class Main {
                     }
                     break;
 
-                case 3: // Eliminar producto (solo para almaceneros)
+                case 3:
                     if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
                         String idProductoStr = JOptionPane.showInputDialog("Ingrese el ID del producto a eliminar:");
                         if (idProductoStr == null || idProductoStr.trim().isEmpty()) continue;
@@ -325,14 +323,13 @@ public class Main {
                     }
                     break;
 
-                case 4:
-                    return;
-
                 default:
                     break;
             }
         }
     }
+
+
 
     public static void realizarCompra(Usuario usuarioLogueado) {
         LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();
