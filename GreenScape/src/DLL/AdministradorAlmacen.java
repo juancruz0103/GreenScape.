@@ -12,8 +12,11 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class AdministradorAlmacen extends Administrador {
+	
     private LinkedList<Producto> productosGestionados;
+    
     private LinkedList<Compra> comprasRealizadas;
+    
     private static Connection con = Conexion.getInstance().getConnection();  
 
     public AdministradorAlmacen(String nombre, int idAdmin, String email, LinkedList<Producto> productosGestionados, LinkedList<Compra> comprasRealizadas) {
@@ -50,6 +53,8 @@ public class AdministradorAlmacen extends Administrador {
 
             while (resultados.next()) {
                 productos.add(new Producto(
+                        resultados.getInt("idproducto"),
+
                         resultados.getString("nombre"),
                         resultados.getString("descripcion"),
                         resultados.getInt("stock"),

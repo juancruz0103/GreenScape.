@@ -89,7 +89,7 @@ public class Main {
     				validarMinus = true;
     			}
     		}
-        }   	
+        }   	    	    	
     	
     	  if (contrasena.length() < 8 ) {
     		JOptionPane.showMessageDialog(null, "Tiene que tener 8 caracteres como minimo.");
@@ -123,7 +123,9 @@ public class Main {
         try {
             idUsuario = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un id numerico de usuario para identificarlo"));
         } catch (NumberFormatException e) {
+        	
             JOptionPane.showMessageDialog(null, "ID de usuario no válido. Debe ser un número.");
+            
             return;
         }
 
