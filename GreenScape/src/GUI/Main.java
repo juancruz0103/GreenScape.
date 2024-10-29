@@ -116,20 +116,32 @@ public class Main {
           return repetir;
     	}
     
-    
-    public static boolean validarNegativo(){
- 	   
- 	   
- 	   return true;
+    public static boolean validarNegativo(int digito){	   
+    	boolean validarNeg = false;
+    	
+    	if (digito < 0) {
+			JOptionPane.showMessageDialog(null, "No debe haber números negativos");
+    	} else {
+    		validarNeg = true;
+		}
+ 
+ 	   return validarNeg;
     }
 
     public static void registrarUsuario() {
         String nombre = JOptionPane.showInputDialog("Ingrese nombre");
 
         int idUsuario;
+        boolean numeroNegativo;
         try {
-        	
-        idUsuario = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un id numerico de usuario para identificarlo"));       
+        
+        	do {
+        		idUsuario = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un id numerico de usuario para identificarlo"));  
+                
+                numeroNegativo = validarNegativo(idUsuario);
+				
+			} while (numeroNegativo==false);
+        
             
         } catch (NumberFormatException e) {
         	
