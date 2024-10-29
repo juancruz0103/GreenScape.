@@ -100,6 +100,8 @@ public class AdministradorJardinero extends Administrador {
         }
         return false;
     }
+    
+    // Para añadir con la base de datos: Lógica para gestionar información, para supervisar progreso.
 
     public void gestionarInformacion() {
         
