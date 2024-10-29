@@ -2,13 +2,13 @@ package GUI;
 import javax.swing.JOptionPane;
 
 import BLL.Curso;
-import BLL.Listproyectos;
 import BLL.Producto;
 import BLL.Proyecto;
 import BLL.Usuario;
 import DLL.AdministradorAlmacen;
 import DLL.AdministradorJardinero;
 import DLL.ListUsuario;
+import DLL.Listproyectos;
 
 import java.util.LinkedList;
 
@@ -115,13 +115,22 @@ public class Main {
           
           return repetir;
     	}
+    
+    
+    public static boolean validarNegativo(){
+ 	   
+ 	   
+ 	   return true;
+    }
 
     public static void registrarUsuario() {
         String nombre = JOptionPane.showInputDialog("Ingrese nombre");
 
         int idUsuario;
         try {
-            idUsuario = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un id numerico de usuario para identificarlo"));
+        	
+        idUsuario = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un id numerico de usuario para identificarlo"));       
+            
         } catch (NumberFormatException e) {
         	
             JOptionPane.showMessageDialog(null, "ID de usuario no válido. Debe ser un número.");

@@ -1,6 +1,9 @@
-package BLL;
+package DLL;
+
 import java.util.Date;
 import java.util.LinkedList;
+
+import BLL.Proyecto;
 
 public class Listproyectos {
     private static LinkedList<Proyecto> proyectos;
