@@ -177,8 +177,7 @@ public class Main {
 
             switch (opcionE) {
                 case 0:
-                    mostrarProyectos();
-                    if (usuarioLogueado.getRol().equalsIgnoreCase("jardinero")) {
+                    if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
                         LinkedList<Curso> cursos = AdministradorJardinero.mostrarCursos();
                         if (cursos.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "No hay cursos registrados.");
@@ -394,3 +393,9 @@ public class Main {
     }
 
 }
+
+
+
+
+
+

@@ -1,21 +1,19 @@
 package BLL;
 
 public class Curso {
-    private int idCurso;
+    private int idjardinero;
     private String nombre;
-    private String informacion;
-    private int administrador_idadministrador;
+    private String descripcion;
 
-    public Curso(int idCurso, String nombre, String descripcion, String informacion, int administrador_idadministrador) {
-        this.idCurso = idCurso;
+    public Curso(int idjardinero, String nombre, String descripcion) {
+        this.idjardinero = idjardinero;
         this.nombre = nombre;
-        this.informacion = informacion;
-        this.administrador_idadministrador = administrador_idadministrador;
+        this.descripcion = descripcion;
     }
 
     // Getters y Setters
     public int getIdCurso() {
-        return idCurso;
+        return idjardinero;
     }
 
     public String getNombre() {
@@ -23,12 +21,9 @@ public class Curso {
     }
 
     public String getinformacion() {
-        return informacion;
+        return descripcion;
     }
-    
-    public int administrador_idadministrador() {
-		return administrador_idadministrador;
-	}
+ 
 
 	
 
