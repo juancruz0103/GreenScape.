@@ -29,7 +29,7 @@ public class Main {
         int IdMenu;
 
         do {
-            IdMenu = JOptionPane.showOptionDialog(null, "Bienvenido a la plataforma de GreenScape. Elija una opción", null, 0, JOptionPane.QUESTION_MESSAGE, null, MenuUsuario, MenuUsuario[0]);
+            IdMenu = JOptionPane.showOptionDialog(null, "Bienvenido a la plataforma de GreenScape. Elija una opción", "GreenScape", 0, JOptionPane.QUESTION_MESSAGE, null, MenuUsuario, MenuUsuario[0]);
 
             switch (IdMenu) {
                 case 0: 
@@ -172,7 +172,7 @@ public class Main {
         int opcionE;
 
         do {
-            opcionE = JOptionPane.showOptionDialog(null, "(GreenScape) Menú general", "", 0, 
+            opcionE = JOptionPane.showOptionDialog(null, "(GreenScape) Menú general", "Menú", 0, 
                           JOptionPane.QUESTION_MESSAGE, null, opcionesUsuario, opcionesUsuario[0]);
 
             switch (opcionE) {
@@ -192,7 +192,9 @@ public class Main {
                             }
                             JOptionPane.showMessageDialog(null, listaCursos.toString());
                         }
-                    } else {
+                    } else if(usuarioLogueado.getRol().equalsIgnoreCase("jardinero")){
+                    	gestionarCurso(usuarioLogueado);
+                    }else {
                         JOptionPane.showMessageDialog(null, "Solo los jardineros pueden administrar los cursos.");
                     }
                     break;
@@ -243,6 +245,119 @@ public class Main {
         // por agregar
     }
 
+    
+    // Funcion para el cundo el jardinero quiera gestionar los cursos.
+    public static void gestionarCurso
+    (
+    		
+     // Le pasamos un objeto por parametro de nombre jardinero de tipo usuario.
+     Usuario Jardinero
+
+    )
+    {
+    	// Logica Acá.
+    	
+    	String[] opcionesCurso;
+    	
+    	opcionesCurso = new String[] {"Ver Cursos", "Crear Curso", "Actualizar Curso", "Eliminar Curso", "Salir"}; 
+    	
+    	int opcionCurso = JOptionPane.showOptionDialog(null, "Opciones", "Gestionamiento de cursos por el Jardinero "+Jardinero.getNombre(),
+    			0, JOptionPane.OK_OPTION, null, opcionesCurso, opcionesCurso);
+
+    	
+    	switch (opcionCurso) {
+		case 0:
+			
+			//Ver Cursos
+			LinkedList<Curso> cursos = AdministradorJardinero.mostrarCursos();
+			StringBuilder listaCursos = new StringBuilder();
+			
+			if (cursos.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay cursos.");
+				return;
+			}
+			
+			for (Curso curso : cursos) {
+				listaCursos.append("ID del Jardinero: ").append(curso.getIdCurso())
+				.append(", Nombre: ").append(curso.getNombre())
+				.append(", Descripción: ").append(curso.getinformacion())
+				.append("\n");
+			}
+			
+			JOptionPane.showMessageDialog(null, listaCursos.toString(), "Lista de los Cursos", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case 1:	
+			//Crear Curso
+			boolean flag = false;
+			
+			String nombreCurso = JOptionPane.showInputDialog("Ingrese nombre del curso");
+			
+			if (nombreCurso == null || nombreCurso.trim().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				return;
+			};
+			 
+			 String descripcion = JOptionPane.showInputDialog("Descripcion");
+			
+			 if (descripcion == null || descripcion.trim().isEmpty())
+			 {
+				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 return;
+			 };
+			
+			Curso curso = new Curso(nombreCurso,descripcion);	
+			AdministradorJardinero.crearCurso(curso);
+		
+			break;
+		case 2:
+			// Actualizar Curso
+			String idDeCursoSTR = JOptionPane.showInputDialog("Ingrese el ID del curso a actualizar");
+			if (idDeCursoSTR == null || idDeCursoSTR.trim().isEmpty())
+			 {
+				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 return;
+			 };
+			 int idDeCurso = Integer.parseInt(idDeCursoSTR);
+			
+			String nuevoNombre = JOptionPane.showInputDialog("Ingrese nuevo nombre del curso");
+			if (nuevoNombre == null || nuevoNombre.trim().isEmpty())
+			 {
+				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 return;
+			 };
+			
+			String nuevaDescripcion = JOptionPane.showInputDialog("Ingrese nueva descripcion");
+			if (nuevaDescripcion == null || nuevaDescripcion.trim().isEmpty())
+			 {
+				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 return;
+			 };
+			
+			Curso cursoActualizado = new Curso(idDeCurso,nuevoNombre,nuevaDescripcion);	
+			AdministradorJardinero.actualizarCurso(cursoActualizado);			
+			
+			break;
+		case 3:
+			// Eliminar Curso
+			String idCursoSTR = JOptionPane.showInputDialog("Ingrese ID de curso a eliminar");
+			if (idCursoSTR == null || idCursoSTR.trim().isEmpty())
+			 {
+				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 return;
+			 };
+			 int idCurso = Integer.parseInt(idCursoSTR);
+			
+			AdministradorJardinero.eliminarCurso(idCurso);
+			
+			break;
+		default:
+			break;
+		}
+    	
+    	
+    }
+    
     // Gestionar tienda usuario
     
     public static void gestionarTienda(Usuario usuarioLogueado) {
@@ -253,7 +368,7 @@ public class Main {
             opcionesTienda = new String[]{"Ver productos", "Comprar productos", "Salir"};
         } 
         // Si es almacenero, puede ver productos y gestionar los productos
-        else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+        else if (usuarioLogueado.getRol().equalsIgnoreCase("almacenero")) {
             opcionesTienda = new String[]{"Ver productos", "Agregar producto", "Actualizar producto", "Eliminar producto", "Salir"};
         } else {
             JOptionPane.showMessageDialog(null, "Rol no autorizado para gestionar la tienda.");
@@ -262,7 +377,7 @@ public class Main {
 
         boolean continuar = true;
         while (continuar) {
-            int opcionTienda = JOptionPane.showOptionDialog(null, "Gestión de la tienda", "", 
+            int opcionTienda = JOptionPane.showOptionDialog(null, "Opciones", "Gestionamiento de los productos por el Almacenero "+usuarioLogueado.getNombre(), 
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcionesTienda, opcionesTienda[0]);
 
             if (opcionTienda == -1 || opcionesTienda[opcionTienda].equals("Salir")) {
@@ -291,7 +406,7 @@ public class Main {
                 case 1:
                     if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
                         realizarCompra(usuarioLogueado);
-                    } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                    } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacenero")) {
                         String nombreProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
                         if (nombreProducto == null || nombreProducto.trim().isEmpty()) continue;
 
@@ -312,7 +427,7 @@ public class Main {
                     break;
 
                 case 2:
-                    if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                    if (usuarioLogueado.getRol().equalsIgnoreCase("almacenero")) {
                         String idProductoStr = JOptionPane.showInputDialog("Ingrese el ID del producto a actualizar:");
                         if (idProductoStr == null || idProductoStr.trim().isEmpty()) continue;
                         int idProducto = Integer.parseInt(idProductoStr);
@@ -337,7 +452,7 @@ public class Main {
                     break;
 
                 case 3:
-                    if (usuarioLogueado.getRol().equalsIgnoreCase("almacen")) {
+                    if (usuarioLogueado.getRol().equalsIgnoreCase("almacenero")) {
                         String idProductoStr = JOptionPane.showInputDialog("Ingrese el ID del producto a eliminar:");
                         if (idProductoStr == null || idProductoStr.trim().isEmpty()) continue;
                         int idProducto = Integer.parseInt(idProductoStr);
@@ -350,8 +465,6 @@ public class Main {
             }
         }
     }
-
-
 
     public static void realizarCompra(Usuario usuarioLogueado) {
         LinkedList<Producto> productos = AdministradorAlmacen.mostrarProducto();

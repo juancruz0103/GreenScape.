@@ -23,9 +23,9 @@ public class ListUsuario {
 	// Lista de usuarios
 	
 	public static void ListaGreenTeam() {
-		usuarios.add(new  Usuario("Andres",0 ,"Andres@gmail.com","Andrespass1", "admin"));
-		usuarios.add(new  Usuario("Juan",1 ,"Juan@gmail.com","Juanpass1", "almacen"));
-		usuarios.add(new  Usuario("Lucas",2 ,"Lucas@gmail.com","Lucasspass1", "admin"));
+		usuarios.add(new  Usuario("Andres",0 ,"Andres@gmail.com","Andrespass1", "jardinero"));
+		usuarios.add(new  Usuario("Juan",1 ,"Juan@gmail.com","Juanpass1", "almacenero"));
+		usuarios.add(new  Usuario("Lucas",2 ,"Lucas@gmail.com","Lucasspass1", "jardinero"));
 		usuarios.add(new  Usuario("Pepe",3 ,"Pepe@gmail.com","Pepespass1", "usuario"));
 		
 

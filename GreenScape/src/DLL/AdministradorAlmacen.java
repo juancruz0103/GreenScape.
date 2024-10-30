@@ -133,3 +133,21 @@ public class AdministradorAlmacen extends Administrador {
         this.comprasRealizadas = comprasRealizadas;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -63,10 +63,11 @@ public class AdministradorJardinero extends Administrador {
     public static Boolean actualizarCurso(Curso curso) {
         try {
             PreparedStatement statement = (PreparedStatement) con.prepareStatement(
-                    "UPDATE `jardinero` SET `nombre`= ?`descripcion`=?"
+                    "UPDATE `jardinero` SET `nombre` = ?, `descripcion` = ? WHERE `idjardinero` = ?"
             );
             statement.setString(1, curso.getNombre());
             statement.setString(2, curso.getinformacion()); //informacion = informacion_jardineria
+            statement.setInt(3, curso.getIdCurso());;
 
             int fila = statement.executeUpdate();
 
@@ -118,3 +119,26 @@ public class AdministradorJardinero extends Administrador {
         this.progresoSupervisado = progresoSupervisado;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

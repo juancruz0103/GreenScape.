@@ -10,6 +10,11 @@ public class Curso {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
+    
+    public Curso(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
 
     // Getters y Setters
     public int getIdCurso() {
