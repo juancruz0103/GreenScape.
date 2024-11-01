@@ -9,7 +9,7 @@ import com.mysql.jdbc.Connection;
 
 public class Conexion {
 	
-	private static final String URL="jdbc:mysql://localhost:3307/greenscape";
+	private static final String URL="jdbc:mysql://localhost:3306/greenscape";
 	private static final String USER="root";
 	private static final String PASS= "";
 	

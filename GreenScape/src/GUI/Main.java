@@ -1,5 +1,5 @@
 package GUI;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import BLL.Curso;
 import BLL.Producto;
