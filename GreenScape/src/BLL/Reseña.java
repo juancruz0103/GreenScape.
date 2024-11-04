@@ -13,8 +13,6 @@ public class Reseña {
         this.fecha = fecha;
         this.idUsuario = idUsuario;
     }
-    
-   // Para añadir con la base de datos: Logica para añadir reseñas.
 
     public void escribirReseña() {
        

@@ -14,7 +14,6 @@ public class Progreso {
         this.checkpoints = checkpoints;
     }
 
-    // Por añadir con la base de datos: logica para mostrarProgreso.
     
     public void mostrarProgreso() {
         

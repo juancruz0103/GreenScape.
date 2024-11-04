@@ -6,7 +6,7 @@ import BLL.Producto;
 
 public class ListProducto {
 	private static LinkedList<Producto> productos;
-	private static String deposito;
+
 	
 	public ListProducto() {
 		
@@ -15,7 +15,6 @@ public class ListProducto {
 	public static LinkedList<Producto> getInstance(String depositoParametro){
 		if (productos==null) {
 			productos = new LinkedList<Producto>();
-			deposito = depositoParametro;
 			rellenarLista();
 		} else {
 			JOptionPane.showMessageDialog(null, "Ya existe");

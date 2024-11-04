@@ -13,7 +13,7 @@ public class Planta {
         this.cuidadosEstacion = cuidadosEstacion;
     }
 
-    // Por añadir con la base de datos: Logica para consultar cuidados.
+
     
     public void consultarCuidados() {
         

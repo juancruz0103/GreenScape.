@@ -74,7 +74,7 @@ public class Main {
     	boolean validarNum = false; 
     	
     	for (int j = 0; j < contrasena.length(); j++) {
-        	char c = contrasena.charAt(j);
+        	
         	
         	// Contraseña 8 caracteres, 1 num, 1 mayus, 1 minus.   	
         	for (int i = 0; i < contrasena.length(); i++) {
@@ -288,7 +288,6 @@ public class Main {
 			break;
 		case 1:	
 			//Crear Curso
-			boolean flag = false;
 			
 			String nombreCurso = JOptionPane.showInputDialog("Ingrese nombre del curso");
 			
@@ -302,7 +301,7 @@ public class Main {
 			
 			 if (descripcion == null || descripcion.trim().isEmpty())
 			 {
-				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 JOptionPane.showMessageDialog(null, "No debe haber datos vacios");
 				 return;
 			 };
 			
@@ -315,7 +314,7 @@ public class Main {
 			String idDeCursoSTR = JOptionPane.showInputDialog("Ingrese el ID del curso a actualizar");
 			if (idDeCursoSTR == null || idDeCursoSTR.trim().isEmpty())
 			 {
-				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 JOptionPane.showMessageDialog(null, "No debe haber datos vacios");
 				 return;
 			 };
 			 int idDeCurso = Integer.parseInt(idDeCursoSTR);
@@ -330,7 +329,7 @@ public class Main {
 			String nuevaDescripcion = JOptionPane.showInputDialog("Ingrese nueva descripcion");
 			if (nuevaDescripcion == null || nuevaDescripcion.trim().isEmpty())
 			 {
-				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 JOptionPane.showMessageDialog(null, "No debe haber datos vacios");
 				 return;
 			 };
 			
@@ -343,7 +342,7 @@ public class Main {
 			String idCursoSTR = JOptionPane.showInputDialog("Ingrese ID de curso a eliminar");
 			if (idCursoSTR == null || idCursoSTR.trim().isEmpty())
 			 {
-				 JOptionPane.showMessageDialog(null, "No debe jaber datos vacios");
+				 JOptionPane.showMessageDialog(null, "No debe haber datos vacios");
 				 return;
 			 };
 			 int idCurso = Integer.parseInt(idCursoSTR);

@@ -14,8 +14,7 @@ public class Proyecto {
         this.estado = estado;
     }
     
-    // Para añadir con la base de datos: Logica para iniciar un proyecto, para mostrar el estado del proyecto.
-
+    
     public void iniciarProyecto() {
        
     }

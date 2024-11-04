@@ -111,10 +111,7 @@ public class AdministradorAlmacen extends Administrador {
         return false;
     }
 
-    public void comprobarCompras() {
-    	
-    	// Método para comprobar compras (pendiente)
-        
+    public void comprobarCompras() {    
     }
 
     public LinkedList<Producto> getProductosGestionados() {
