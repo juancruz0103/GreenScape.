@@ -9,6 +9,7 @@ import DLL.AdministradorAlmacen;
 import DLL.AdministradorJardinero;
 import DLL.ListUsuario;
 import DLL.Listproyectos;
+import BLL.Usuario;
 
 import java.util.LinkedList;
 
@@ -134,35 +135,28 @@ public class Main {
         int idUsuario;
         boolean numeroNegativo;
         try {
-        
-        	do {
-        		idUsuario = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un id numerico de usuario para identificarlo"));  
-                
+            do {
+                idUsuario = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un id numerico de usuario para identificarlo"));
                 numeroNegativo = validarNegativo(idUsuario);
-				
-			} while (numeroNegativo==false);
-        
-            
+            } while (numeroNegativo == false);
         } catch (NumberFormatException e) {
-        	
             JOptionPane.showMessageDialog(null, "ID de usuario no válido. Debe ser un número.");
-            
             return;
         }
 
-        String email = JOptionPane.showInputDialog("Ingrese email");     
+        String email = JOptionPane.showInputDialog("Ingrese email");
         String contrasena;
         boolean repetir;
-        
         do {
-        	contrasena = JOptionPane.showInputDialog("Ingrese contraseña");
-        	repetir = validarContraseña(contrasena);	
-		} while (repetir==true);    
-        
+            contrasena = JOptionPane.showInputDialog("Ingrese contraseña");
+            repetir = validarContraseña(contrasena);
+        } while (repetir == true);
+
         String rol = JOptionPane.showInputDialog("Ingrese rol (usuario, estudiante)");
-        
-        Usuario nuevoUsuario = new Usuario(nombre, idUsuario, email, contrasena, rol);
-        ListUsuario.guardar(nuevoUsuario);
+
+        // Llama al método save para insertar el usuario en la base de datos
+        Usuario.save(nombre, idUsuario, email, contrasena, rol);
+
         JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
     }
 

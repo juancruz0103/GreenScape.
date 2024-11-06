@@ -49,7 +49,7 @@ public class Usuario {
     }
 
     public static void save(String nombre, int idUsuario, String email, String contrasena, String rol) {
-        String query = "INSERT INTO usuarios (idusuario, nombre, email, contraseña, rol) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO usuario (idusuario, nombre, email, contraseña, rol) VALUES (?, ?, ?, ?, ?)";
         
         try (Connection con = Conexion.getInstance().getConnection();
              PreparedStatement statement = (PreparedStatement) con.prepareStatement(query)) {  // Sin necesidad de cast
