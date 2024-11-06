@@ -1,5 +1,12 @@
 package BLL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+import DLL.Conexion;
 
 public class Usuario {
     private String nombre;
@@ -17,16 +24,36 @@ public class Usuario {
         this.rol = rol;
     }
 
-
-    public static Usuario login(String email, String contrasena, List<Usuario> usuarios) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getEmail().equals(email) && usuario.getContrasena().equals(contrasena)) {
-                return usuario; 
-            }
-        }
+    private static Connection con = Conexion.getInstance().getConnection();
+    
+    public static Usuario login(String email, String contrasena) {     	
+    	try (
+    		PreparedStatement statement = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario WHERE email = ?")) {	
+    		statement.setString(1,email);	
+    		ResultSet resultados = statement.executeQuery();
+    	
+    		if (resultados.next()){
+    			String userCon = resultados.getString("contraseña");  
+    		
+    		if (userCon.equals(contrasena)) {
+    				Usuario newUser = new Usuario (resultados.getString("nombre"), resultados.getInt("idusuario"), resultados.getString("email"), resultados.getString("contraseña"), resultados.getString("rol"));
+    				return newUser;
+    			}
+    		} 
+    		
+    	} catch (SQLException p) {
+    		p.printStackTrace();
+    	}
+    	
         return null; 
     }
 
+    public static void save (String nombre, int idUsuario, String email, String contrasena, String rol) {
+    	PreparedStatement statement = (PreparedStatement) con.prepareStatement("INSERT INTO usuarios (nombre, email) VALUES (?, ?)") {
+    		try (Connection con = Conexion.getInstance().getConnection();
+    	}
+    	
+    }
 
     public String getEmail() {
         return email;

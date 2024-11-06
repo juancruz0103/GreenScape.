@@ -52,11 +52,11 @@ public class Main {
 
     
     
-    public static void iniciarSesion(LinkedList<Usuario> usuarios) {
+    public static void iniciarSesion(LinkedList<Usuario> usuario) {
         String email = JOptionPane.showInputDialog("Ingrese su email:");
         String contrasena = JOptionPane.showInputDialog("Ingrese su contraseña:");
 
-        Usuario usuarioLogueado = Usuario.login(email, contrasena, usuarios);
+        Usuario usuarioLogueado = Usuario.login(email, contrasena);
 
         if (usuarioLogueado != null) {
             JOptionPane.showMessageDialog(null, "Login exitoso. Bienvenido " + usuarioLogueado.getNombre());
@@ -160,9 +160,9 @@ public class Main {
 		} while (repetir==true);    
         
         String rol = JOptionPane.showInputDialog("Ingrese rol (usuario, estudiante)");
-
+        
         Usuario nuevoUsuario = new Usuario(nombre, idUsuario, email, contrasena, rol);
-        ListUsuario.guardar(nuevoUsuario);
+        Usuario save()
         JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
     }
 
