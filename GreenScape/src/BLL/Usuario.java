@@ -48,12 +48,30 @@ public class Usuario {
         return null; 
     }
 
-    public static void save (String nombre, int idUsuario, String email, String contrasena, String rol) {
-    	PreparedStatement statement = (PreparedStatement) con.prepareStatement("INSERT INTO usuarios (nombre, email) VALUES (?, ?)") {
-    		try (Connection con = Conexion.getInstance().getConnection();
-    	}
-    	
+    public static void save(String nombre, int idUsuario, String email, String contrasena, String rol) {
+        String query = "INSERT INTO usuarios (idusuario, nombre, email, contraseña, rol) VALUES (?, ?, ?, ?, ?)";
+        
+        try (Connection con = Conexion.getInstance().getConnection();
+             PreparedStatement statement = (PreparedStatement) con.prepareStatement(query)) {  // Sin necesidad de cast
+            
+            // Configura los parámetros de la consulta
+            statement.setInt(1, idUsuario);
+            statement.setString(2, nombre);
+            statement.setString(3, email);
+            statement.setString(4, contrasena);
+            statement.setString(5, rol);
+            
+            // Ejecuta la consulta
+            int filasAfectadas = statement.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                System.out.println("Usuario registrado exitosamente.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();;
+        }
     }
+
 
     public String getEmail() {
         return email;

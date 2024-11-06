@@ -162,7 +162,7 @@ public class Main {
         String rol = JOptionPane.showInputDialog("Ingrese rol (usuario, estudiante)");
         
         Usuario nuevoUsuario = new Usuario(nombre, idUsuario, email, contrasena, rol);
-        Usuario save()
+        ListUsuario.guardar(nuevoUsuario);
         JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
     }
 
