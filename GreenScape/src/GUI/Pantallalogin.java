@@ -54,7 +54,7 @@ public class Pantallalogin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel imgmomo = new JLabel("New label");
-		imgmomo.setIcon(new ImageIcon("C:\\Users\\User\\OneDrive\\Escritorio\\GreenScape2-main\\GreenScape2-main\\GreenScape2\\GreenScape\\src\\img\\splinter.jpg"));
+		imgmomo.setIcon(new ImageIcon("C:\\Users\\User\\OneDrive\\Escritorio\\GreenScape2-main\\GreenScape2\\GreenScape\\src\\img\\splinter.jpg"));
 		imgmomo.setBounds(224, 58, 189, 141);
 		contentPane.add(imgmomo);
 		
@@ -87,7 +87,7 @@ public class Pantallalogin extends JFrame {
 			private List<Usuario> usuarios;
 			public void actionPerformed(ActionEvent e) {
 				
-				Usuario usuarioLogueado = Usuario.login(inpMail.getText(), inpcontra.getText(), usuarios);
+				Usuario usuarioLogueado = Usuario.login(inpMail.getText(), inpcontra.getText());
 				
 
 		        if (usuarioLogueado != null) {
