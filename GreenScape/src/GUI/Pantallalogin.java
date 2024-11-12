@@ -76,6 +76,29 @@ public class Pantallalogin extends JFrame {
 		lblerror.setBounds(31, 177, 169, 20);
 		contentPane.add(lblerror);
 		
+		
+		
+		
+		
+		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				PantallaRegistro nuevo = new PantallaRegistro();
+				nuevo.setVisible(true);
+				dispose();
+			}
+		});
+		
+		btnRegistrarse.setBounds(250,209, 89, 23);
+		contentPane.add(btnRegistrarse);
+		
+		
+		
+		
+		
+		
+		
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.addActionListener(new ActionListener() {
 			
@@ -94,12 +117,18 @@ public class Pantallalogin extends JFrame {
 			}
 		});
 		
+		
+		
 		btnEnviar.setBounds(31, 209, 89, 23);
 		contentPane.add(btnEnviar);
+		
+	
 		
 		inpcontra = new JPasswordField();
 		inpcontra.setBounds(31, 146, 125, 20);
 		contentPane.add(inpcontra);
+		
+		
 		
 	}
 }

@@ -112,4 +112,9 @@ public class Usuario {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+	public static Usuario Register(String nombre2, String contrasena2, String correo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
