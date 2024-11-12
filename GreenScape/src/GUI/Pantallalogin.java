@@ -26,9 +26,7 @@ public class Pantallalogin extends JFrame {
 	private JTextField inpMail;
 	private JPasswordField inpcontra;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,9 +40,6 @@ public class Pantallalogin extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Pantallalogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -54,7 +49,7 @@ public class Pantallalogin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel imgmomo = new JLabel("New label");
-		imgmomo.setIcon(new ImageIcon("C:\\Users\\User\\OneDrive\\Escritorio\\GreenScape2-main\\GreenScape2\\GreenScape\\src\\img\\splinter.jpg"));
+		imgmomo.setIcon(new ImageIcon("C:\\Users\\Alumno\\Desktop\\GreenScape2-main\\GreenScape2\\GreenScape\\src\\img\\splinter.jpg"));
 		imgmomo.setBounds(224, 58, 189, 141);
 		contentPane.add(imgmomo);
 		
@@ -98,6 +93,7 @@ public class Pantallalogin extends JFrame {
 		        }
 			}
 		});
+		
 		btnEnviar.setBounds(31, 209, 89, 23);
 		contentPane.add(btnEnviar);
 		

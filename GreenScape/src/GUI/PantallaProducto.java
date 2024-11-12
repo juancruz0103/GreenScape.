@@ -27,6 +27,7 @@ public class PantallaProducto extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Usuario usuarioLogueado;
 
 	/**
 	 * Launch the application.
@@ -36,7 +37,7 @@ public class PantallaProducto extends JFrame {
 	 * Create the frame.
 	 */
 	public PantallaProducto() {
-		Usuario usuarioLogueado;
+		Usuario usuarioLogueado = null;
 		this.usuarioLogueado = usuarioLogueado;
 
         setTitle("Gestión de Tienda");
@@ -162,7 +163,8 @@ public class PantallaProducto extends JFrame {
                           .append(", Precio: $").append(producto.getPrecio())
                           .append("\n");
         }
-        textArea.setText(listaProductos.toString());
+        AbstractButton textArea = null;
+		textArea.setText(listaProductos.toString());
     }
 
     // Método para agregar producto (aquí deberías implementar la lógica de entrada de producto)
