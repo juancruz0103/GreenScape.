@@ -49,8 +49,8 @@ public class Pantallalogin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel imgmomo = new JLabel("New label");
-		imgmomo.setIcon(new ImageIcon("C:\\Users\\Alumno\\Desktop\\GreenScape2-main\\GreenScape2\\GreenScape\\src\\img\\splinter.jpg"));
-		imgmomo.setBounds(224, 58, 189, 141);
+		imgmomo.setIcon(new ImageIcon("C:/Users/User/OneDrive/Escritorio/GreenScape2-main/GreenScape2/GreenScape/GreenScape2/GreenScape/src/img/plantalogo.jpg"));
+		imgmomo.setBounds(224, 58, 200, 150);
 		contentPane.add(imgmomo);
 		
 		JLabel lblMail = new JLabel("Mail");
@@ -79,7 +79,7 @@ public class Pantallalogin extends JFrame {
 		
 		
 		
-		
+		//boton que lleva a la otra paguina usar de ejemplo
 		JButton btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
