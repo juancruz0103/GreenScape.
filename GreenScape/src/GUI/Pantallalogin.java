@@ -48,10 +48,10 @@ public class Pantallalogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel imgmomo = new JLabel("New label");
-		imgmomo.setIcon(new ImageIcon("C:/Users/User/OneDrive/Escritorio/GreenScape2-main/GreenScape2/GreenScape/GreenScape2/GreenScape/src/img/plantalogo.jpg"));
-		imgmomo.setBounds(224, 58, 200, 150);
-		contentPane.add(imgmomo);
+		JLabel imglogo = new JLabel("New label");
+		imglogo.setIcon(new ImageIcon("C:/Users/User/OneDrive/Escritorio/GreenScape2-main/GreenScape2/GreenScape/GreenScape2/GreenScape/src/img/plantalogo.jpg"));
+		imglogo.setBounds(224, 58, 200, 150);
+		contentPane.add(imglogo);
 		
 		JLabel lblMail = new JLabel("Mail");
 		lblMail.setBounds(31, 46, 98, 20);
@@ -110,14 +110,14 @@ public class Pantallalogin extends JFrame {
 
 		        if (usuarioLogueado != null) {
 		            JOptionPane.showMessageDialog(null, "Login exitoso. Bienvenido " + usuarioLogueado.getNombre());
-		            //mostrarMenuUsuario(usuarioLogueado);
+		            PantallaMenu nuevo = new PantallaMenu();
+					nuevo.setVisible(true);
+					dispose();
 		        } else {
 		        	lblerror.setText("Credenciales incorrectas. Intente de nuevo.");
 		        }
 			}
 		});
-		
-		
 		
 		btnEnviar.setBounds(31, 209, 89, 23);
 		contentPane.add(btnEnviar);
