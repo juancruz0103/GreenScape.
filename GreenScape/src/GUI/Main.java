@@ -240,7 +240,7 @@ public class Main {
     }
 
     
-    // Funcion para el cundo el jardinero quiera gestionar los cursos.
+    // Funcion para el curso el jardinero quiera gestionar los cursos.
     public static void gestionarCurso
     (
     		

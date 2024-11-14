@@ -129,6 +129,11 @@ public class Pantallalogin extends JFrame {
 		contentPane.add(inpcontra);
 		
 		
+		//login de prueba
+		
+		//Pepe@gmail.com
+		
+		//Pepespass1
 		
 	}
 }
