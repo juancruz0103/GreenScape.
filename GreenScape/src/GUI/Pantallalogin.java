@@ -102,7 +102,7 @@ public class Pantallalogin extends JFrame {
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.addActionListener(new ActionListener() {
 			
-			private List<Usuario> usuarios;
+			private List<Usuario> usuario;
 			public void actionPerformed(ActionEvent e) {
 				
 				Usuario usuarioLogueado = Usuario.login(inpMail.getText(), inpcontra.getText());

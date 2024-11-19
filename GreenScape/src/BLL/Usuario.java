@@ -48,7 +48,7 @@ public class Usuario {
         return null; 
     }
 
-    public static void save(String nombre, int idUsuario, String email, String contrasena, String rol) {
+    public static boolean save(String nombre, int idUsuario, String email, String contrasena, String rol) {
         String query = "INSERT INTO usuario (idusuario, nombre, email, contraseña, rol) VALUES (?, ?, ?, ?, ?)";
         
         try (Connection con = Conexion.getInstance().getConnection();
@@ -70,6 +70,7 @@ public class Usuario {
         } catch (SQLException e) {
             e.printStackTrace();;
         }
+		return false;
     }
 
 
