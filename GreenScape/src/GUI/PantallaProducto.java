@@ -29,13 +29,6 @@ public class PantallaProducto extends JFrame {
 	private JPanel contentPane;
 	private Usuario usuarioLogueado;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	public PantallaProducto() {
 		Usuario usuarioLogueado = null;
 		this.usuarioLogueado = usuarioLogueado;

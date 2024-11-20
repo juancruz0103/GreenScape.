@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,18 +31,48 @@ public class PantallaMenu extends JFrame {
 		contentPane.add(imgfondo);
 		
 		JButton btncurso = new JButton("Curso");
+		btncurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				PantallaCurso nuevo = new PantallaCurso();
+				nuevo.setVisible(true);
+				dispose();
+			}
+		});
 		btncurso.setBounds(20, 182, 89, 23);
 		contentPane.add(btncurso);
 		
+		
 		JButton btntienda = new JButton("Tienda");
+		btntienda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				PantallaTiendaUsuario nuevo = new PantallaTiendaUsuario(null);
+				nuevo.setVisible(true);
+				dispose();
+			}
+		});
 		btntienda.setBounds(163, 182, 89, 23);
 		contentPane.add(btntienda);
 		
 		JButton btnProgreso = new JButton("Progreso");
+		btnProgreso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				PantallaProgreso nuevo = new PantallaProgreso();
+				nuevo.setVisible(true);
+				dispose();
+			}
+		});
 		btnProgreso.setBounds(296, 182, 89, 23);
 		contentPane.add(btnProgreso);
 		
 		JButton btnsalir = new JButton("Salir");
+		btnsalir.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        System.exit(0);
+		    }
+		});
 		btnsalir.setBounds(163, 227, 89, 23);
 		contentPane.add(btnsalir);
 	}

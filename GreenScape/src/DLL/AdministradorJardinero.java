@@ -1,10 +1,10 @@
 package DLL;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -19,6 +19,7 @@ public class AdministradorJardinero extends Administrador {
         super(nombre, idAdmin, email);
         this.progresoSupervisado = progresoSupervisado;
     }
+
     private static Connection con = Conexion.getInstance().getConnection();
 
     public static LinkedList<Curso> mostrarCursos() {
@@ -28,7 +29,7 @@ public class AdministradorJardinero extends Administrador {
             ResultSet resultados = statement.executeQuery();
 
             while (resultados.next()) {
-                cursos.add(new Curso(resultados.getInt("idjardinero"),resultados.getString("nombre"), resultados.getString("descripcion")));
+                cursos.add(new Curso(resultados.getInt("idjardinero"), resultados.getString("nombre"), resultados.getString("descripcion")));
             }
             resultados.close();
             statement.close();
@@ -38,14 +39,14 @@ public class AdministradorJardinero extends Administrador {
 
         return cursos;
     }
-    
+
     public static Boolean crearCurso(Curso curso) {
         try {
             PreparedStatement statement = (PreparedStatement) con.prepareStatement(
                     "INSERT INTO `jardinero`(`nombre`,`descripcion`) VALUES (?,?)"
             );
             statement.setString(1, curso.getNombre());
-            statement.setString(2, curso.getinformacion()); //informacion = informacion_jardineria
+            statement.setString(2, curso.getinformacion()); // informacion = informacion_jardineria
 
             int fila = statement.executeUpdate();
 
@@ -66,8 +67,8 @@ public class AdministradorJardinero extends Administrador {
                     "UPDATE `jardinero` SET `nombre` = ?, `descripcion` = ? WHERE `idjardinero` = ?"
             );
             statement.setString(1, curso.getNombre());
-            statement.setString(2, curso.getinformacion()); //informacion = informacion_jardineria
-            statement.setInt(3, curso.getIdCurso());;
+            statement.setString(2, curso.getinformacion()); // informacion = informacion_jardineria
+            statement.setInt(3, curso.getIdCurso());
 
             int fila = statement.executeUpdate();
 
@@ -99,18 +100,7 @@ public class AdministradorJardinero extends Administrador {
         }
         return false;
     }
-    
-    // Para añadir con la base de datos: Lógica para gestionar información, para supervisar progreso.
 
-    public void gestionarInformacion() {
-        
-    }
-
-    public void supervisarProgreso() {
-        
-    }
-
-    
     public LinkedList<Progreso> getProgresoSupervisado() {
         return progresoSupervisado;
     }
@@ -119,26 +109,3 @@ public class AdministradorJardinero extends Administrador {
         this.progresoSupervisado = progresoSupervisado;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
