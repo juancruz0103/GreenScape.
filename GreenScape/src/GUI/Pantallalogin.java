@@ -101,14 +101,11 @@ public class Pantallalogin extends JFrame {
                         pantallaAlmacenero.setVisible(true);
                         dispose();
                     } else if (usuarioLogueado.getRol().equalsIgnoreCase("jardinero")) {
-                        // Si es jardinero, redirigir a la pantalla del jardinero
-                        if (usuarioLogueado instanceof AdministradorJardinero) {
-                            AdministradorJardinero jardineroLogueado = (AdministradorJardinero) usuarioLogueado;
-                            PantallaJardinero pantallaJardinero = new PantallaJardinero(jardineroLogueado);
-                            pantallaJardinero.setVisible(true);
-                            dispose();
-                        
-                        }
+                        // Si es Jardinero, redirigir a la pantalla de gestión de cursos
+                        PantallaJardinero pantallaJardinero = new PantallaJardinero(usuarioLogueado);
+                        pantallaJardinero.setVisible(true);
+                        dispose();
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Rol no reconocido.");
                     }
