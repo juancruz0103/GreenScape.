@@ -17,7 +17,7 @@ public class PantallaCurso extends JFrame {
     private JScrollPane scrollPane;
     private JButton btnMostrarProyectos;
     private DefaultTableModel tableModel;
-    private final JButton btnSalir = new JButton("New button");
+    private final JButton btnSalir = new JButton("Atras");
 
 
 

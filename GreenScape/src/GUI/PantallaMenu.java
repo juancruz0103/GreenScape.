@@ -33,7 +33,7 @@ public class PantallaMenu extends JFrame {
 		imgfondo.setBounds(10, 21, 414, 150);
 		contentPane.add(imgfondo);
 		
-		JButton btncurso = new JButton("Curso");
+		JButton btncurso = new JButton("Proyectos");
 		btncurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -58,7 +58,7 @@ public class PantallaMenu extends JFrame {
 		btntienda.setBounds(163, 182, 89, 23);
 		contentPane.add(btntienda);
 		
-		JButton btnProgreso = new JButton("Progreso");
+		JButton btnProgreso = new JButton("Cursos");
 		btnProgreso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
