@@ -41,7 +41,7 @@ public class Pantallalogin extends JFrame {
         contentPane.setLayout(null);
         
         JLabel imglogo = new JLabel("New label");
-        imglogo.setIcon(new ImageIcon("C:/Users/User/OneDrive/Escritorio/GreenScape2-main/GreenScape2/GreenScape/GreenScape2/GreenScape/src/img/plantalogo.jpg"));
+        imglogo.setIcon(new ImageIcon("C:/Users/Alumno/Documents/GitHub/GreenScape2/GreenScape/src/img/plantalogo.jpg"));
         imglogo.setBounds(224, 58, 200, 150);
         contentPane.add(imglogo);
         
@@ -92,7 +92,7 @@ public class Pantallalogin extends JFrame {
 
                     if (usuarioLogueado.getRol().equalsIgnoreCase("usuario")) {
                         // Si es usuario, redirigir a la pantalla de productos
-                        PantallaMenu pantallaUsuario = new PantallaMenu();
+                        PantallaMenu pantallaUsuario = new PantallaMenu(usuarioLogueado);
                         pantallaUsuario.setVisible(true);
                         dispose();
                     } else if (usuarioLogueado.getRol().equalsIgnoreCase("almacenero")) {

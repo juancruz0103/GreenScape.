@@ -25,7 +25,7 @@ import javax.swing.*;
 	    public PantallaTiendaUsuario(Usuario usuario) {
 	        this.usuarioLogueado = usuario;
 
-	        setTitle("Tienda - Usuario");
+	        setTitle("Tienda");
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setBounds(100, 100, 450, 300);
 	        contentPane = new JPanel();
@@ -73,7 +73,7 @@ import javax.swing.*;
 	        btnSalir.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 					
-					PantallaMenu nuevo = new PantallaMenu();
+					PantallaMenu nuevo = new PantallaMenu(usuario);
 					nuevo.setVisible(true);
 					dispose();
 				}

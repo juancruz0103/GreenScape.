@@ -65,7 +65,7 @@ public class PantallaCurso extends JFrame {
         btnSalir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				
-				PantallaMenu nuevo = new PantallaMenu();
+				PantallaMenu nuevo = new PantallaMenu(null);
 				nuevo.setVisible(true);
 				dispose();
 			}

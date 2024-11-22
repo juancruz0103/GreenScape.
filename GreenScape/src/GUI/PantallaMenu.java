@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import BLL.Usuario;
+
 import javax.swing.JButton;
 
 public class PantallaMenu extends JFrame {
@@ -17,7 +20,7 @@ public class PantallaMenu extends JFrame {
 	private JPanel contentPane;
 
 	
-	public PantallaMenu() {
+	public PantallaMenu(Usuario usuario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -26,7 +29,7 @@ public class PantallaMenu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel imgfondo = new JLabel("fondo");
-		imgfondo.setIcon(new ImageIcon("C:/Users/User/OneDrive/Escritorio/GreenScape2-main/GreenScape2/GreenScape/GreenScape2/GreenScape/src/img/plantafondo.jpg"));
+		imgfondo.setIcon(new ImageIcon("C:/Users/Alumno/Documents/GitHub/GreenScape2/GreenScape/src/img/plantafondo.jpg"));
 		imgfondo.setBounds(10, 21, 414, 150);
 		contentPane.add(imgfondo);
 		
@@ -47,7 +50,7 @@ public class PantallaMenu extends JFrame {
 		btntienda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				PantallaTiendaUsuario nuevo = new PantallaTiendaUsuario(null);
+				PantallaTiendaUsuario nuevo = new PantallaTiendaUsuario(usuario);
 				nuevo.setVisible(true);
 				dispose();
 			}

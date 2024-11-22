@@ -26,7 +26,7 @@ public class PantallaProgreso extends JFrame {
         btnatras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				PantallaMenu nuevo = new PantallaMenu();
+				PantallaMenu nuevo = new PantallaMenu(null);
 				nuevo.setVisible(true);
 				dispose();
 			}
