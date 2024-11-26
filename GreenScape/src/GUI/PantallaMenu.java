@@ -18,9 +18,11 @@ public class PantallaMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Usuario usuarioLogueado;
 
 	
 	public PantallaMenu(Usuario usuario) {
+		this.usuarioLogueado = usuario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -37,7 +39,7 @@ public class PantallaMenu extends JFrame {
 		btncurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				PantallaCurso nuevo = new PantallaCurso();
+				PantallaCurso nuevo = new PantallaCurso(usuario);
 				nuevo.setVisible(true);
 				dispose();
 			}
@@ -62,7 +64,7 @@ public class PantallaMenu extends JFrame {
 		btnProgreso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				PantallaProgreso nuevo = new PantallaProgreso();
+				PantallaProgreso nuevo = new PantallaProgreso(usuario);
 				nuevo.setVisible(true);
 				dispose();
 			}

@@ -20,7 +20,7 @@ import javax.swing.*;
 	    private JPanel contentPane;
 	    private JList<String> productosList;
 	    private DefaultListModel<String> listModel;
-	    private Usuario usuarioLogueado; // Usuario logueado
+	    private Usuario usuarioLogueado; 
 
 	    public PantallaTiendaUsuario(Usuario usuario) {
 	        this.usuarioLogueado = usuario;

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import BLL.Curso;
+import BLL.Usuario;
 import DLL.AdministradorJardinero;
 
 public class PantallaProgreso extends JFrame {
@@ -17,9 +18,11 @@ public class PantallaProgreso extends JFrame {
     private JScrollPane scrollPane;
     private JButton btnMostrarCursos;
     private DefaultTableModel tableModel;
+    private Usuario usuarioLogueado; 
     private final JButton btnSalir = new JButton("Atras");
 
-    public PantallaProgreso() {
+    public PantallaProgreso(Usuario usuario) {
+    	this.usuarioLogueado = usuario;
         setTitle("Gestión de Cursos");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 592, 575);
@@ -62,7 +65,7 @@ public class PantallaProgreso extends JFrame {
         // Botón de salir (regresar al menú anterior)
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PantallaMenu nuevo = new PantallaMenu(null);
+                PantallaMenu nuevo = new PantallaMenu(usuario);
                 nuevo.setVisible(true);
                 dispose();
             }
@@ -73,7 +76,7 @@ public class PantallaProgreso extends JFrame {
 
     // Método para mostrar los cursos en la tabla
     public void mostrarCursos() {
-        LinkedList<Curso> cursos = AdministradorJardinero.mostrarCursos();  // Obtener los cursos
+        LinkedList<Curso> cursos = AdministradorJardinero.mostrarCursos(); 
 
         if (cursos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay cursos registrados.");
@@ -86,11 +89,11 @@ public class PantallaProgreso extends JFrame {
         // Agregar los cursos a la tabla
         for (Curso curso : cursos) {
             Object[] row = new Object[3];
-            row[0] = curso.getIdCurso();       // ID Curso
-            row[1] = curso.getNombre();        // Nombre
-            row[2] = curso.getinformacion();   // Descripción
+            row[0] = curso.getIdCurso();       
+            row[1] = curso.getNombre();        
+            row[2] = curso.getinformacion();   
 
-            tableModel.addRow(row);  // Agregar fila a la tabla
+            tableModel.addRow(row); 
         }
     }
 }

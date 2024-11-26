@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import BLL.Proyecto;
+import BLL.Usuario;
 import DLL.Listproyectos;
 
 public class PantallaCurso extends JFrame {
@@ -17,11 +18,13 @@ public class PantallaCurso extends JFrame {
     private JScrollPane scrollPane;
     private JButton btnMostrarProyectos;
     private DefaultTableModel tableModel;
+    private Usuario usuarioLogueado; 
     private final JButton btnSalir = new JButton("Atras");
 
 
 
-    public PantallaCurso() {
+    public PantallaCurso(Usuario usuario) {
+    	this.usuarioLogueado = usuario;
         setTitle("Gestión de Proyectos");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 592, 575);
@@ -65,7 +68,7 @@ public class PantallaCurso extends JFrame {
         btnSalir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 				
-				PantallaMenu nuevo = new PantallaMenu(null);
+				PantallaMenu nuevo = new PantallaMenu(usuario);
 				nuevo.setVisible(true);
 				dispose();
 			}
